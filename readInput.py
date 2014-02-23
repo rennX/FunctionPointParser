@@ -58,13 +58,14 @@ i=-1
 for s in list:
 	i += 1
 	text = nltk.word_tokenize(s[1])
+	print text
 	pos = nltk.pos_tag(text)
 	# regex pattern to define noun phrase
 	pattern = "NP: {<DT>?<JJ>*<NN>}"
 	NPChunker = nltk.RegexpParser(pattern)
 	result = NPChunker.parse(pos)
-	print "Chunked POS TAG:::Block " + str(i)
-	print result
+#	print "Chunked POS TAG:::Block " + str(i)
+#	print result
 	
 
 
