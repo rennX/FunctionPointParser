@@ -14,7 +14,7 @@ def distinctWords( aList )
 	Returns:
 		Integer value of the count of total distinct words in list
 	"""
-  print len(set(aList))
+  	print len(set(aList))
 
 def main ():
 	"""
