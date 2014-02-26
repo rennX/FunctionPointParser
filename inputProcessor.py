@@ -11,10 +11,13 @@ from fileIo import *
 class InputProcessor:
 	
 	"""
-	self.blockList:  list of blocks split off of block number (##1)
+	Attributes:
+		self.blockList:  list of blocks split off of block number (##1)
 
-	self.outputList:  2D array.  Row 0 is header row [block,text,tag].  
+		self.outputList:  2D array.  Row 0 is header row [block,text,tag].  
 			  Each additional row contains data for an individual block.
+
+		**Note:  most functions rely on the self.outputList attribute.  This is  returned by the sepTag() function
 	"""		
 
 	def __init__(self):
@@ -174,12 +177,12 @@ def main():
 
 	fio = fileIo('input.txt')
 	inFile = fio.getInput()
-	#print inFile
+#	print inFile
 
 	ip = InputProcessor()
 
 	blocks = ip.parseBlock(inFile)
-#	print blocks[1]
+#	print blocks
 
 	list = ip.sepTag(blocks)
 #	for x in list:
@@ -197,7 +200,7 @@ def main():
 #	ip.printRow(1)
 
 	tokens = ip.tokenize()
-	print tokens
+#	print tokens
 
 if __name__ == '__main__':
 	main()

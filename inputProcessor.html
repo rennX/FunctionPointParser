@@ -37,10 +37,13 @@
 <font color="#000000" face="helvetica, arial"><a name="InputProcessor">class <strong>InputProcessor</strong></a></font></td></tr>
     
 <tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
-<td colspan=2><tt>self.<strong>blockList</strong>:&nbsp;&nbsp;list&nbsp;of&nbsp;blocks&nbsp;split&nbsp;off&nbsp;of&nbsp;block&nbsp;number&nbsp;(##1)<br>
+<td colspan=2><tt>Attributes:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;self.<strong>blockList</strong>:&nbsp;&nbsp;list&nbsp;of&nbsp;blocks&nbsp;split&nbsp;off&nbsp;of&nbsp;block&nbsp;number&nbsp;(##1)<br>
 &nbsp;<br>
-self.<strong>outputList</strong>:&nbsp;&nbsp;2D&nbsp;array.&nbsp;&nbsp;Row&nbsp;0&nbsp;is&nbsp;header&nbsp;row&nbsp;[block,text,tag].&nbsp;&nbsp;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Each&nbsp;additional&nbsp;row&nbsp;contains&nbsp;data&nbsp;for&nbsp;an&nbsp;individual&nbsp;block.<br>&nbsp;</tt></td></tr>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;self.<strong>outputList</strong>:&nbsp;&nbsp;2D&nbsp;array.&nbsp;&nbsp;Row&nbsp;0&nbsp;is&nbsp;header&nbsp;row&nbsp;[block,text,tag].&nbsp;&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Each&nbsp;additional&nbsp;row&nbsp;contains&nbsp;data&nbsp;for&nbsp;an&nbsp;individual&nbsp;block.<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Note:&nbsp;&nbsp;most&nbsp;functions&nbsp;rely&nbsp;on&nbsp;the&nbsp;self.<strong>outputList</strong>&nbsp;attribute.&nbsp;&nbsp;This&nbsp;is&nbsp;&nbsp;returned&nbsp;by&nbsp;the&nbsp;<a href="#InputProcessor-sepTag">sepTag</a>()&nbsp;function<br>&nbsp;</tt></td></tr>
 <tr><td>&nbsp;</td>
 <td width="100%">Methods defined here:<br>
 <dl><dt><a name="InputProcessor-__init__"><strong>__init__</strong></a>(self)</dt><dd><tt>Initializes&nbsp;a&nbsp;new&nbsp;empty&nbsp;<a href="#InputProcessor">InputProcessor</a>&nbsp;object.</tt></dd></dl>
