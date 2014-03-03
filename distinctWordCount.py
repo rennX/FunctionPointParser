@@ -3,7 +3,7 @@
 import nltk
 import re
 
-def distinctWords( aList )
+def distinctWords( aList ):
 	"""
 	Takes a list of strings and returns the count of total distinct words in list.
 		
@@ -14,7 +14,9 @@ def distinctWords( aList )
 	Returns:
 		Integer value of the count of total distinct words in list
 	"""
-  	print len(set(aList))
+  	return:
+            len(set(aList))
+
 
 def main ():
 	"""
