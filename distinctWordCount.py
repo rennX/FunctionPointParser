@@ -2,6 +2,7 @@
 
 import nltk
 import re
+from fileIo import *
 
 def distinctWords( aList ):
 	"""
@@ -14,8 +15,12 @@ def distinctWords( aList ):
 	Returns:
 		Integer value of the count of total distinct words in list
 	"""
+  	text = []
+  	for x in aList:
+  		y = x.lower()
+  		text.append( y )
   	return:
-            len(set(aList))
+            len(set(text))
 
 
 def main ():
