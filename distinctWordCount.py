@@ -19,8 +19,7 @@ def distinctWords( aList ):
   	for x in aList:
   		y = x.lower()
   		text.append( y )
-  	return:
-            len(set(text))
+  	return len(set(text))
 
 
 def main ():
