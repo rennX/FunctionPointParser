@@ -6,7 +6,7 @@ import re
 import nltk
 import numpy
 
-from fileIo import *
+from FileIo import *
 
 class InputProcessor:
 	
@@ -24,7 +24,27 @@ class InputProcessor:
 		"""Initializes a new empty InputProcessor object."""
 		pass
 
-	def parseBlock(self,inFile):
+	def processInput (self,inFile):
+		"""Parses properly formatted text file into a 2D array 
+		
+		Args:  
+			Infile: Text with blocks denoted by ##<num>
+				ex.  ##1 First block of text
+				     ##2 Second block of text
+				Tags are denoted by [[<tag1>,<tag2>]].
+				ex. First block of text [[tag1,tag2]]
+				
+		Returns: 
+			A two-dimensional array.
+			Row 0 contains headers [block, test, tag].  
+			Block contains the index number of the block.
+			Test contains the text of the block.
+			Tag contains the tags associated with the block.
+
+		"""
+		return (self._sepTag(self._parseBlock(inFile)))
+
+	def _parseBlock(self,inFile):
 		"""
 		Parses input text into individual blocks.
 		
@@ -47,7 +67,7 @@ class InputProcessor:
 
 		return self.blockList
 		
-	def sepTag(self,blocks):
+	def _sepTag(self,blocks):
 		"""
 		Separate tags from input blocks and organizes into a list.
 
