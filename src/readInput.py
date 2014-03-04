@@ -65,7 +65,7 @@ for s in list:
 	NPChunker = nltk.RegexpParser(pattern)
 	result = NPChunker.parse(pos)
 #	print "Chunked POS TAG:::Block " + str(i)
-#	print result
+	print result
 	
 
 

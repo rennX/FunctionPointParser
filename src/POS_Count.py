@@ -18,11 +18,12 @@ def countNouns( aList ):
 		Integer value of the count of total nouns in list
 	"""
 	nounCount = 0
+	#print aList
 	findNoun = re.compile('NN')
 	for x in aList:
 		if findNoun.search(str(x)) is not None:
 			nounCount += 1
-#	print( nounCount )
+	#print( nounCount )
 	return nounCount
 
 def countVerbs( aList ):
@@ -89,7 +90,7 @@ def main ():
 		result = NPChunker.parse(pos)
 		#print "Chunked POS TAG:::Block " + str(i)
 
-	print result
+	#print result
 	print "Total nouns = " + str(countNouns( result ))
 	print "Total verbs = " + str(countVerbs( result ))
 	print "Total adjectives = " + str(countAdjectives( result ))

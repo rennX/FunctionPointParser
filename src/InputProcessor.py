@@ -26,7 +26,7 @@ class InputProcessor:
 
 	def parseBlock(self,inFile):
 		"""
-		Parses inpput text into individual blocks.
+		Parses input text into individual blocks.
 		
 		Args:
 			inFile: Text with blocks denoted by ##<num>
@@ -200,7 +200,7 @@ def main():
 #	ip.printRow(1)
 
 	tokens = ip.tokenize()
-#	print tokens
+	print tokens
 
 if __name__ == '__main__':
 	main()

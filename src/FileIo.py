@@ -14,11 +14,11 @@ class fileIo:
 		self.inputFile = self.f.read()
 		self.f.close()
 		
-	def displayInput(self):
+	def toString(self):
 		"""Prints out the contents of the input file"""
-		print self.inputFile
+		print str(self.inputFile)
 
-	def getInput(self):
-		"""Returns the contents of the input file"""
+	def getFile(self):
+		"""Returns the contents of the input file as a string"""
 		return self.inputFile
 
