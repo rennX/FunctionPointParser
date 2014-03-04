@@ -3,7 +3,7 @@
 """This class reads in and processes 
 	input text from a file"""
 
-class fileIo:
+class FileIo:
 			
 
 	def __init__(self, file):
