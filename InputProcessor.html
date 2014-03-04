@@ -1,14 +1,14 @@
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
-<html><head><title>Python: module inputProcessor</title>
+<html><head><title>Python: module InputProcessor</title>
 </head><body bgcolor="#f0f0f8">
 
 <table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
 <tr bgcolor="#7799ee">
 <td valign=bottom>&nbsp;<br>
-<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong>inputProcessor</strong></big></big></font></td
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong>InputProcessor</strong></big></big></font></td
 ><td align=right valign=bottom
-><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:/home/aaron/Documents/FunctionPointParser/inputProcessor.py">/home/aaron/Documents/FunctionPointParser/inputProcessor.py</a></font></td></tr></table>
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:/home/aaron/Documents/FunctionPointParser/src/InputProcessor.py">/home/aaron/Documents/FunctionPointParser/src/InputProcessor.py</a></font></td></tr></table>
     <p><tt>This&nbsp;class&nbsp;offers&nbsp;several&nbsp;methods&nbsp;to&nbsp;processes&nbsp;input&nbsp;using&nbsp;the&nbsp;NLTK&nbsp;and&nbsp;other&nbsp;libraries.</tt></p>
 <p>
 <table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
@@ -28,7 +28,7 @@
     
 <tr><td bgcolor="#ee77aa"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
 <td width="100%"><dl>
-<dt><font face="helvetica, arial"><a href="inputProcessor.html#InputProcessor">InputProcessor</a>
+<dt><font face="helvetica, arial"><a href="InputProcessor.html#InputProcessor">InputProcessor</a>
 </font></dt></dl>
  <p>
 <table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
@@ -43,7 +43,7 @@
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;self.<strong>outputList</strong>:&nbsp;&nbsp;2D&nbsp;array.&nbsp;&nbsp;Row&nbsp;0&nbsp;is&nbsp;header&nbsp;row&nbsp;[block,text,tag].&nbsp;&nbsp;<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Each&nbsp;additional&nbsp;row&nbsp;contains&nbsp;data&nbsp;for&nbsp;an&nbsp;individual&nbsp;block.<br>
 &nbsp;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Note:&nbsp;&nbsp;most&nbsp;functions&nbsp;rely&nbsp;on&nbsp;the&nbsp;self.<strong>outputList</strong>&nbsp;attribute.&nbsp;&nbsp;This&nbsp;is&nbsp;&nbsp;returned&nbsp;by&nbsp;the&nbsp;<a href="#InputProcessor-sepTag">sepTag</a>()&nbsp;function<br>&nbsp;</tt></td></tr>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Note:&nbsp;&nbsp;most&nbsp;functions&nbsp;rely&nbsp;on&nbsp;the&nbsp;self.<strong>outputList</strong>&nbsp;attribute.&nbsp;&nbsp;This&nbsp;is&nbsp;&nbsp;returned&nbsp;by&nbsp;the&nbsp;sepTag()&nbsp;function<br>&nbsp;</tt></td></tr>
 <tr><td>&nbsp;</td>
 <td width="100%">Methods defined here:<br>
 <dl><dt><a name="InputProcessor-__init__"><strong>__init__</strong></a>(self)</dt><dd><tt>Initializes&nbsp;a&nbsp;new&nbsp;empty&nbsp;<a href="#InputProcessor">InputProcessor</a>&nbsp;object.</tt></dd></dl>
@@ -65,16 +65,6 @@ Args:<br>
 Returns:<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Integer&nbsp;value&nbsp;of&nbsp;columns&nbsp;in&nbsp;the&nbsp;list</tt></dd></dl>
 
-<dl><dt><a name="InputProcessor-parseBlock"><strong>parseBlock</strong></a>(self, inFile)</dt><dd><tt>Parses&nbsp;inpput&nbsp;text&nbsp;into&nbsp;individual&nbsp;blocks.<br>
-&nbsp;<br>
-Args:<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;inFile:&nbsp;Text&nbsp;with&nbsp;blocks&nbsp;denoted&nbsp;by&nbsp;##&lt;num&gt;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ex.&nbsp;&nbsp;##1&nbsp;First&nbsp;block&nbsp;of&nbsp;text<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;##2&nbsp;Second&nbsp;block&nbsp;of&nbsp;text<br>
-&nbsp;<br>
-Returns:<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A&nbsp;list&nbsp;of&nbsp;blocks&nbsp;split&nbsp;on&nbsp;the&nbsp;(##&lt;num&gt;)&nbsp;block&nbsp;delimiter.</tt></dd></dl>
-
 <dl><dt><a name="InputProcessor-printColumn"><strong>printColumn</strong></a>(self, colNum)</dt><dd><tt>Prints&nbsp;out&nbsp;a&nbsp;particular&nbsp;column&nbsp;in&nbsp;self.<strong>outputList</strong>&nbsp;based&nbsp;on&nbsp;input&nbsp;parameter.&nbsp;&nbsp;<br>
 &nbsp;<br>
 Args:<br>
@@ -92,12 +82,15 @@ Args:<br>
 Returns:<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;None</tt></dd></dl>
 
-<dl><dt><a name="InputProcessor-sepTag"><strong>sepTag</strong></a>(self, blocks)</dt><dd><tt>Separate&nbsp;tags&nbsp;from&nbsp;input&nbsp;blocks&nbsp;and&nbsp;organizes&nbsp;into&nbsp;a&nbsp;list.<br>
+<dl><dt><a name="InputProcessor-processInput"><strong>processInput</strong></a>(self, inFile)</dt><dd><tt>Parses&nbsp;properly&nbsp;formatted&nbsp;text&nbsp;file&nbsp;into&nbsp;a&nbsp;2D&nbsp;array&nbsp;<br>
 &nbsp;<br>
-Args:<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;blocks:&nbsp;&nbsp;A&nbsp;list&nbsp;with&nbsp;one&nbsp;block&nbsp;per&nbsp;index.&nbsp;&nbsp;Tags&nbsp;are&nbsp;denoted&nbsp;by&nbsp;[[&lt;tag1&gt;,&lt;tag2&gt;]].<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ex.&nbsp;First&nbsp;block&nbsp;of&nbsp;text&nbsp;[[tag1,tag2]]<br>
-&nbsp;<br>
+Args:&nbsp;&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Infile:&nbsp;Text&nbsp;with&nbsp;blocks&nbsp;denoted&nbsp;by&nbsp;##&lt;num&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ex.&nbsp;&nbsp;##1&nbsp;First&nbsp;block&nbsp;of&nbsp;text<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;##2&nbsp;Second&nbsp;block&nbsp;of&nbsp;text<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Tags&nbsp;are&nbsp;denoted&nbsp;by&nbsp;[[&lt;tag1&gt;,&lt;tag2&gt;]].<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ex.&nbsp;First&nbsp;block&nbsp;of&nbsp;text&nbsp;[[tag1,tag2]]<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>
 Returns:&nbsp;<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A&nbsp;two-dimensional&nbsp;array.<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Row&nbsp;0&nbsp;contains&nbsp;headers&nbsp;[block,&nbsp;test,&nbsp;tag].&nbsp;&nbsp;<br>
