@@ -20,6 +20,25 @@ def distinctWords( aList ):
   		y = x.lower()
   		text.append( y )
   	return len(set(text))
+  	
+  	
+ def totalDistinctWords( aList ):
+	"""
+	Takes a list of lists of strings and returns the count of total distinct words in entire list.
+		
+	Args:
+		aList: a list of list of strings for processing
+				ex.  [['text1','text2',...], ['text1', 'text3']]
+
+	Returns:
+		Integer value of the count of total distinct words in entire list
+	"""
+  	text = []
+  	for x in aList:
+  		for z in x:
+  			y = z.lower()
+  			text.append( y )
+  	return len(set(text))
 
 
 def main ():
