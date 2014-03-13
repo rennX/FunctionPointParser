@@ -8,23 +8,30 @@ from fileIo import *
 
 def countNouns( aList ):
 	"""
-	Takes a list of strings and returns the count of total nouns in list.
+	Takes a list of lists of strings with POS information and returns 
+	the count of total nouns in each sub-list.
 		
 	Args:
-		aList: a list of strings for processing
-				ex.  "text"
+		aList: a list of lists of strings for processing
+				ex.  [["text, NN"],["text2, NN"]]
 
 	Returns:
 		Integer value of the count of total nouns in list
 	"""
+	totalNounCount = 0
 	nounCount = 0
 	#print aList
 	findNoun = re.compile('NN')
 	for x in aList:
-		if findNoun.search(str(x)) is not None:
-			nounCount += 1
+		for y in x
+			if findNoun.search(str(y)) is not None:
+				nounCount += 1
+		print( nounCount )
+		print( "\n" )
+		totalNounCount += nounCount
+		nounCount = 0
 	#print( nounCount )
-	return nounCount
+	return totalNounCount
 
 def countVerbs( aList ):
 	"""
