@@ -20,9 +20,13 @@ class InputProcessor:
 		**Note:  most functions rely on the self.outputList attribute.  This is  returned by the sepTag() function
 	"""		
 
+##############################################################################
+
 	def __init__(self):
 		"""Initializes a new empty InputProcessor object."""
 		pass
+
+##############################################################################
 
 	def processInput (self,inFile):
 		"""Parses properly formatted text file into a 2D array 
@@ -43,6 +47,8 @@ class InputProcessor:
 
 		"""
 		return (self._sepTag(self._parseBlock(inFile)))
+
+##############################################################################
 
 	def _parseBlock(self,inFile):
 		"""
@@ -66,6 +72,8 @@ class InputProcessor:
 			self.blockList.append( block.rstrip() )
 
 		return self.blockList
+
+##############################################################################
 		
 	def _sepTag(self,blocks):
 		"""
@@ -98,6 +106,8 @@ class InputProcessor:
 
 		return self.outputList
 
+##############################################################################
+
 	def numBlocks(self):
 		"""
 		Returns the number of blocks in self.outputList.  
@@ -115,6 +125,8 @@ class InputProcessor:
 	
 		return blocks
 
+##############################################################################
+
         def numCols(self):
                 """
                 Returns the number of columns in self.outputList.  
@@ -129,6 +141,8 @@ class InputProcessor:
                 num = len(self.outputList[0])
 
                 return num
+
+##############################################################################
 
         def printColumn(self,colNum):
                 """
@@ -145,6 +159,7 @@ class InputProcessor:
 		for val in self.outputList:
 			print val[colNum]            
 
+##############################################################################
 
 	def printRow(self,rowNum):
                 """
@@ -165,6 +180,8 @@ class InputProcessor:
 			print "\n" + sol[0][count] + ":\n\t" + val
 			count += 1
 
+##############################################################################
+
         def tokenize(self, blockNum='allBlocks'):
                 """
                 Tokenizes a block of text using nltk.word_tokenize.  
@@ -184,43 +201,30 @@ class InputProcessor:
 			for block in self.outputList:
 				returnList.append(nltk.word_tokenize(block[1]))
 				
+				
 		else:
 			returnList = nltk.word_tokenize(self.outputList[blockNum][1])
 		
 		return returnList
 
-def main():
-	"""
-	Main method to run test cases.
-	"""
-	print "In main..."
+##############################################################################
 
-	fio = fileIo('input.txt')
-	inFile = fio.getInput()
-#	print inFile
+	def getBlock(self, aList):
+		"""
+		Accepts a 2D array (aList).  Returns the column aList[i] minus the header (first) row.
+		
+		Args: aList
+		
+		Returns:  blockList - a list with one block per entry
+		
+		"""
+		rowCount = 1
+		blockList = []
+		for row in aList:
+			block = row[1]
+			#print block
+			blockList.append(row[1])
+			rowCount+=1
+	
+		return blockList
 
-	ip = InputProcessor()
-
-	blocks = ip.parseBlock(inFile)
-#	print blocks
-
-	list = ip.sepTag(blocks)
-#	for x in list:
-#      		print "\n\n"
-#	       	print x
-
-	rows = ip.numBlocks()
-#	print rows
-
-	cols = ip.numCols()
-#	print cols
-
-#	ip.printColumn(2)	
-
-#	ip.printRow(1)
-
-	tokens = ip.tokenize()
-	print tokens
-
-if __name__ == '__main__':
-	main()

@@ -5,7 +5,8 @@ import numpy
 
 # this can be its own function
 # it open a text file for reading
-f = open('input.txt')
+file = '../input.txt'
+f = open(file)
 input = f.read()
 f.close()
 

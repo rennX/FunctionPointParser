@@ -2,7 +2,7 @@
 
 import nltk
 import re
-from fileIo import *
+from FileIo import *
 
 def wordCount( aList ):
 	"""
@@ -23,7 +23,7 @@ def main ():
 	Main method to test functions
 
 	"""
-	fio = fileIo("input.txt")
+	fio = FileIo("../input2.txt")
 	text = fio.getInput()
 	p = re.compile(r'#?\d[\s\.]?[\s]?')
 	out = filter(None, p.split(text))
