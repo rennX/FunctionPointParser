@@ -1,0 +1,9 @@
+##1Business requirements are what must be delivered to provide value. [[EO,EI]]
+
+##2 Confusion arises for three main reasons. [[EI]]
+
+##3.Such confusion can be avoided by recognizing that business requirements are not objectives but rather meet objectives. [[IEF]]
+
+##4. In system or software development projects, business requirements usually requires authority from stakeholders. 
+
+##5.Business requirements are often listed in a Business Requirements Document or BRD. [[EO,EI]]
