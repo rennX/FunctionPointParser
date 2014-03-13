@@ -1,0 +1,61 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Python: module readInput</title>
+</head><body bgcolor="#f0f0f8">
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong>readInput</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:/home/aaron/Documents/FunctionPointParser/src/readInput.py">/home/aaron/Documents/FunctionPointParser/src/readInput.py</a></font></td></tr></table>
+    <p></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#aa55cc">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Modules</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#aa55cc"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><table width="100%" summary="list"><tr><td width="25%" valign=top><a href="nltk.html">nltk</a><br>
+</td><td width="25%" valign=top><a href="numpy.html">numpy</a><br>
+</td><td width="25%" valign=top><a href="re.html">re</a><br>
+</td><td width="25%" valign=top></td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#55aa55">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Data</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#55aa55"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><strong>NPChunker</strong> = &lt;chunk.RegexpParser with 1 stages&gt;<br>
+<strong>blockRegEx</strong> = &lt;_sre.SRE_Pattern object&gt;<br>
+<strong>f</strong> = &lt;closed file '../input.txt', mode 'r'&gt;<br>
+<strong>file</strong> = '../input.txt'<br>
+<strong>i</strong> = 5<br>
+<strong>input</strong> = '##1Business requirements are what must be delive...ents of a product, system, or software.[[EO,EI]]<font color="#c040c0">\n</font>'<br>
+<strong>list</strong> = array([['block', 'text', 'tag'],
+       ['1',
+  ...are.\n',
+        'EO,EI']], 
+      dtype='|S846')<br>
+<strong>list2</strong> = ['5', 'Business requirements are often listed in a Busi... requirements of a product, system, or software.<font color="#c040c0">\n</font>', 'EO,EI']<br>
+<strong>m</strong> = &lt;_sre.SRE_Match object&gt;<br>
+<strong>numcols</strong> = 3<br>
+<strong>numrows</strong> = 6<br>
+<strong>out</strong> = ['Business requirements are what must be delivered...or personal, for profit or non-profit.[[EO,EI]]<font color="#c040c0">\n\n</font>', 'Confusion arises for three main reasons. (1) A c... software requirements that are detailed.[[EI]]<font color="#c040c0">\n\n</font>', 'Such confusion can be avoided by recognizing tha...quirements into product requirements.[1][[IEF]]<font color="#c040c0">\n\n</font>', 'In system or software development projects, busi... safety that apply at the business level.[[EO]]<font color="#c040c0">\n\n</font>', 'Business requirements are often listed in a Busi...ents of a product, system, or software.[[EO,EI]]<font color="#c040c0">\n</font>']<br>
+<strong>pattern</strong> = 'NP: {&lt;DT&gt;?&lt;JJ&gt;*&lt;NN&gt;}'<br>
+<strong>pos</strong> = [('Business', 'NN'), ('requirements', 'NNS'), ('are', 'VBP'), ('often', 'RB'), ('listed', 'VBN'), ('in', 'IN'), ('a', 'DT'), ('Business', 'NN'), ('Requirements', 'NNS'), ('Document', 'NNP'), ('or', 'CC'), ('BRD.', 'NNP'), ('The', 'NNP'), ('emphasis', 'NN'), ('in', 'IN'), ('a', 'DT'), ('BRD', 'NNP'), ('is', 'VBZ'), ('on', 'IN'), ('what', 'WP'), ...]<br>
+<strong>result</strong> = Tree('S', [Tree('NP', [('Business', 'NN')]), ('r...), Tree('NP', [('software', 'NN')]), ('.', '.')])<br>
+<strong>s</strong> = array(['5',
+       'Business requirements are of...tware.\n',
+       'EO,EI'], 
+      dtype='|S846')<br>
+<strong>t</strong> = array(['5',
+       'Business requirements are of...tware.\n',
+       'EO,EI'], 
+      dtype='|S846')<br>
+<strong>tag</strong> = 'EO,EI'<br>
+<strong>tagRegEx</strong> = &lt;_sre.SRE_Pattern object&gt;<br>
+<strong>text</strong> = ['Business', 'requirements', 'are', 'often', 'listed', 'in', 'a', 'Business', 'Requirements', 'Document', 'or', 'BRD.', 'The', 'emphasis', 'in', 'a', 'BRD', 'is', 'on', 'what', ...]<br>
+<strong>x</strong> = 'Business requirements are often listed in a Busi... requirements of a product, system, or software.<font color="#c040c0">\n</font>'</td></tr></table>
+</body></html>
