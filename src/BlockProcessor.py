@@ -105,7 +105,7 @@ class BlockProcessor:
 			pos = nltk.pos_tag(s)
 			#print pos
 			# regex pattern to define noun phrase
-			pattern = "NP: {<DT>?<JJ>*<NN>}"
+			pattern = "NP: {<DT>?<JJ>*(<NN>|<NNP>|<NNPS>|<NNS>)*}"
 			NPChunker = nltk.RegexpParser(pattern)
 			result = NPChunker.parse(pos)
 		#	print "Chunked POS TAG:::Block " + str(i)
