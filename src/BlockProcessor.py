@@ -28,16 +28,18 @@ class BlockProcessor:
 			Integer value of the count of total nouns in list
 		"""
 		nounCount = 0
-		#print aList
-		findNoun = re.compile('NN')
+		totalNounCount = 0
+		findNoun = re.compile('NN')  # TODO Refine.  This will also match SKINNER
 		for x in aList:
 			for y in x:
-				print "Scanning..." + str(y)
+				#print "Scanning..." + str(y)
 				if findNoun.search(str(y)) is not None:
 					nounCount += 1
-			print( nounCount )
+			print "\nScanning..." + str(x) 
+			print "\tNouns found: " + str(nounCount)
+			totalNounCount += nounCount
 			nounCount = 0
-		return nounCount
+		return totalNounCount
 
 ##############################################################################
 
@@ -99,21 +101,18 @@ class BlockProcessor:
 
 		i=-1
 		for s in list:
-			#i += 1
-			#text = nltk.word_tokenize(s[1])
-			#print text
 			pos = nltk.pos_tag(s)
 			#print pos
 			# regex pattern to define noun phrase
 			pattern = "NP: {<DT>?<JJ>*(<NN>|<NNP>|<NNPS>|<NNS>)*}"
 			NPChunker = nltk.RegexpParser(pattern)
 			result = NPChunker.parse(pos)
-		#	print "Chunked POS TAG:::Block " + str(i)
 			print result
+			# TODO turn into proper return statement
 		
 ################################################################################
 		
-	def getPOS (self, aList):
+	def posTagger(self, aList):
 		posList = []
 		for block in aList:
 			text = nltk.word_tokenize(block[1])
