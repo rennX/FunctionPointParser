@@ -30,8 +30,8 @@ class BlockProcessor:
 		nounCount = 0
 		totalNounCount = 0
 		findNoun = re.compile('NN')  # TODO Refine.  This will also match SKINNER
-		#findNoun = re.compile('(NN|NNP|NNS|NNPS)$') <-This won't match SKINNER, but doesn't recognize chunked phrases
-		for x in aList:
+		#findNoun = re.compile('(NN|NNP|NNS|NNPS)$') <-This won't match SKINNER, but also doesn't recognize
+		for x in aList:				# chunked phrases. I think because they aren't strings.
 			for y in x:
 				#print "Scanning..." + str(y)
 				if findNoun.search(str(y)) is not None:
