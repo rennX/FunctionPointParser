@@ -36,7 +36,7 @@ class BlockProcessor:
 				if findNoun.search(str(y)) is not None:
 					nounCount += 1
 			print "\nScanning..." + str(x) 
-			print "\tNouns found: " + str(nounCount)
+			print "\tNouns found: " + str(nounCount)  # TODO instead of printing here, call function to add to 2D array
 			totalNounCount += nounCount
 			nounCount = 0
 		return totalNounCount

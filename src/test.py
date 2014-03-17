@@ -12,6 +12,11 @@ fio = FileIo(input)
 ip = InputProcessor()
 bp = BlockProcessor()
 
+print "\n###################################################################################\n"
+
+print "Original input text:"
+fio.toString();
+
 print "\n###################################################################################\n\n"
 
 raw_input("Preparing to run processInput(). Press Enter to continue...")
