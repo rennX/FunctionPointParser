@@ -136,10 +136,12 @@ class BlockProcessor:
 		"""
 		
 		#### TODO This counts periods.  Need to regex these out
+		#notWord = re.compile('^[\.|,|;|\(|\)|\[|\]]$') <-regex for things not to count
 	  	wordCount = 0
 	  	for block in aList:
 	  		text = nltk.word_tokenize(block)
 	  		for word in text:
+	  			#if notWord.search( str(word) ) is None: <-should keep out non-words
 	  			wordCount += 1
 	  	
 	  	return wordCount
