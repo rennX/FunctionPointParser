@@ -135,11 +135,14 @@ class BlockProcessor:
 		"""
 		
 		#### TODO This counts periods.  Need to regex these out
+	  	
+	  	notWord = re.compile('^[\.|,|;|\(|\)|\[|\]]$')
 	  	wordCount = 0
 	  	for block in aList:
 	  		text = nltk.word_tokenize(block)
 	  		for word in text:
-	  			wordCount += 1
+	  			if notWord.search( str(word) ) is None:
+		  			wordCount += 1
 	  	
 	  	return wordCount
 
