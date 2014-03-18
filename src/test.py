@@ -54,7 +54,7 @@ print "\n#######################################################################
 
 raw_input("Preparing to run wordCount(). Press Enter to continue...")
 words = bp.wordCount(ip.getBlock(processInput))
-print "Total word count: " + str(words)
+print "Total word count: " + str(words) + "\n\n"
 
 
 
