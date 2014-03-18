@@ -30,7 +30,8 @@ class BlockProcessor:
 		nounCount = 0
 		totalNounCount = 0
 		findNoun = re.compile('NN')  # TODO Refine.  This will also match SKINNER
-		for x in aList:
+		#findNoun = re.compile('(NN|NNP|NNS|NNPS)$') <-This won't match SKINNER, but also doesn't recognize
+		for x in aList:				# chunked phrases. I think because they aren't strings.
 			for y in x:
 				#print "Scanning..." + str(y)
 				if findNoun.search(str(y)) is not None:
@@ -134,8 +135,6 @@ class BlockProcessor:
 			Integer value of the count of total words in list
 		"""
 		
-		#### TODO This counts periods.  Need to regex these out
-	  	
 	  	notWord = re.compile('^[\.|,|;|\(|\)|\[|\]]$')
 	  	wordCount = 0
 	  	for block in aList:
