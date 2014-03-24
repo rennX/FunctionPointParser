@@ -17,12 +17,11 @@ amendments = [["Congress shall make no law respecting an establishment of religi
 
 amendmentLists = []
 for each in amendments:
-	print each
-	print "\n"
+	print "\n",each
 	tempList = word_tokenize(str(each))
 	amendmentLists.append(tempList)
 
-raw_input("Press Enter to continue...")
+raw_input("\nPress Enter to continue...")
 	
 newList = []
 for each in amendments:
