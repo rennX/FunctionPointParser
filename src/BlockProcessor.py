@@ -7,6 +7,7 @@ import nltk
 
 from FileIo import *
 from InputProcessor import *
+from Switch import *
 
 class BlockProcessor:
 
@@ -104,11 +105,10 @@ class BlockProcessor:
 			pos = nltk.pos_tag(s)
 			#print pos
 			# regex pattern to define noun phrase
-			pattern = "NP: {<DT>?<JJ>*(<NN>|<NNP>|<NNPS>|<NNS>)*}"
+			pattern = "NP: {<DT>?(<JJ>|<JJR>|<JJS>)*(<NN>|<NNP>|<NNPS>|<NNS>)*}"
 			NPChunker = nltk.RegexpParser(pattern)
 			result = NPChunker.parse(pos)
-			print result
-			# TODO turn into proper return statement
+			return result
 		
 ################################################################################
 		
@@ -144,8 +144,69 @@ class BlockProcessor:
 	  	
 	  	return wordCount
 
-	
+##############################################################################
 
+#['block','text','tag', 'nounCount', 'verbCount', 'pronounCount', 'adjCount', 'adverbCount', 'otherCount']  
+	
+	def updateArray (self, aList, blockNum, attrib, value):
+		"""
+		Updates value in 2D array based on input parameters.
+		
+		Args:
+			aList: the 2D array to be updated
+			
+			blockNum: the block number to be updated.  Valid values are:
+				'nounCount', 'verbCount', 'pronounCount', 'adjCount', 'adverbCount', 'otherCount', 'totalWordCount', 'distinctWordCount'
+				
+			attrib: the attribute of the block to be updated
+			
+			value: the number or count value
+			
+		Returns:
+			The updated 2D array, aList
+		"""
+		rowNum = -1
+		for block in aList:
+			rowNum += 1
+			if block[0] is str(blockNum):
+				print block
+				for case in Switch(attrib):
+				    if case('nounCount'):
+				        colNum = 3
+				        print "I should be updating ["+str(rowNum)+"]["+str(colNum)+"] with " + str(value)
+        				break
+        			if case('verbCount'):
+				        colNum = 4
+        				break
+        			if case('pronounCount'):
+				        colNum = 5
+        				break
+        			if case('adjCount'):
+				        colNum = 6
+        				break
+        			if case('adverbCount'):
+				        colNum = 7
+        				break
+        			if case('otherCount'):
+				        colNum = 8
+        				break
+        			if case('totalWordCount'):
+				        colNum = 9
+        				break
+        			if case('distinctWordCount'):
+				        colNum = 10
+        				break
+        			if case():
+        				#return aList
+        				return "You broke it"
+				break # break out of for block in.,,
+		aList[rowNum][colNum] = value
+		return aList
+			
+			
+			
+	
+	
 
 
 

@@ -56,6 +56,13 @@ raw_input("Preparing to run wordCount(). Press Enter to continue...")
 words = bp.wordCount(ip.getBlock(processInput))
 print "Total word count: " + str(words) + "\n\n"
 
+print "\n###################################################################################\n\n"
+
+raw_input("Preparing to run updateArray(). Press Enter to continue...")
+processInput = bp.updateArray(processInput,5,'verbCount',42)
+print processInput
+
+
 
 
 
