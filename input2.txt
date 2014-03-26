@@ -7,3 +7,7 @@
 ##4. In system or software development projects, business requirements usually requires authority from stakeholders. 
 
 ##5.Business requirements are often listed in a Business Requirements Document or BRD. [[EO,EI]]
+
+##6. The market for system-management software for Digital's hardware is fragmented enough that a giant such as Computer Associates should do well there.
+
+##7. We saw the lazy fat short yellow dog.
