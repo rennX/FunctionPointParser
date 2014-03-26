@@ -10,7 +10,7 @@ class Switch(object):
         """Return the match method once, then stop"""
         yield self.match
         raise StopIteration
-    
+
     def match(self, *args):
         """Indicate whether or not to enter a case suite"""
         if self.fall or not args:
@@ -23,7 +23,7 @@ class Switch(object):
 
 
 #Usage:
-#v='ten'            
+#v='ten'
 #for case in Switch(v):
 #    if case('one'):
 #        print 1

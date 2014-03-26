@@ -110,7 +110,7 @@ class InputProcessor:
 			if tagFound:
 				tag = tagFound.group(1)  # store tag value in tag
 			blockText = re.sub(tagRegEx,'',block)  # remove tag from block text
-			tempList = [str(blockCounter),blockText,tag, None, None, None, None, None, None, None, None]  # generates new row to be added to outputList
+			tempList = [str(blockCounter),blockText,tag, 0, 0, 0, 0, 0, 0, 0, 0]  # generates new row to be added to outputList
 			self.outputList = numpy.vstack([self.outputList,tempList])  # add tempList as new row to self.outputList
 
 		return self.outputList
