@@ -106,7 +106,13 @@ Returns:
             pos = nltk.pos_tag(s)
             #print pos
             # regex pattern to define noun phrase
-            pattern = "NP: {<DT>?(<JJ>|<JJR>|<JJS>)*(<NN>|<NNP>|<NNPS>|<NNS>)*}"
+            #pattern = "NP: {<DT>?(<JJ>|<JJR>|<JJS>)*(<NN>|<NNP>|<NNPS>|<NNS>)*}"
+            pattern = """
+                NP: {<DT|PP\$>?(<JJ>|<JJR>|<JJS>)*(<NN>|<NNP>|<NNPS>|<NNS>|<POS>)+}
+                    {<NNP>+}
+                    {<NN>+}
+                    {<PRP>+}
+            """
             NPChunker = nltk.RegexpParser(pattern)
             result.append(NPChunker.parse(pos))
         return result
