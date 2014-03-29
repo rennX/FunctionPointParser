@@ -33,10 +33,10 @@ distinctWords2 = []
 for each in distinctWords:
 	distinctWords2.append(str(each))
 	
-wordMat = [['theWord', 'block1', 'block2', 'block3', 'block4', 'block5']]
+wordMat = [['theWord', 'block1', 'block2', 'block3', 'block4', 'block5', 'totalCount']]
 x = 1
 wordCount = len(distinctWords2)
-blockCount = 5
+blockCount = 6
 for each in distinctWords2:
 	tempList = [str(each)]
 	while x <= blockCount:
@@ -61,6 +61,7 @@ for block in amendmentLists:
 			if word == wordMat[y][0]:
 				wordMat[y][x] += 1
 				totalWords += 1
+				wordMat[y][blockCount] += 1
 				break
 			else:
 				y += 1
@@ -77,4 +78,4 @@ for each in amendmentLists:
 	totalWords += len(each)
 print "\nTotal words in amendmentLists: ",totalWords
 
-raw_input("Press Enter to quit...")
+raw_input("\nPress Enter to quit...")
