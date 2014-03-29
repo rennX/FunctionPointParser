@@ -44,7 +44,7 @@ class BlockProcessor:
 
 ##############################################################################
 
-    def countVerbs( aList ):
+    def countVerbs( self, aList ):
         """
         Takes a list of strings and returns the count of total verbs in list.
 
@@ -56,16 +56,22 @@ class BlockProcessor:
                 Integer value of the count of total verbs in list
         """
         verbCount = 0
-        findVerb = re.compile('VB')
+        totalVerbCount = 0
+        findVerb = re.compile("\'VB\w?\'")
         for x in aList:
-            if findVerb.search(str(x)) is not None:
-                verbCount += 1
-    #       print( verbCount )
-        return verbCount
+            for y in x:
+                #print "Scanning..." + str(y)
+                if findVerb.search(str(y)) is not None:
+                    verbCount += 1
+            print "\nScanning..." + str(x)
+            print "\tVerbs found: " + str(verbCount)  # TODO instead of printing here, call function to add to 2D array
+            totalVerbCount += verbCount
+            verbCount = 0
+        return totalVerbCount
 
 ##############################################################################
 
-    def countAdjectives( aList ):
+    def countAdjectives( self, aList ):
         """
         Takes a list of strings and returns the count of total adjectives in list.
 
@@ -77,12 +83,101 @@ class BlockProcessor:
                 Integer value of the count of total adjectives in list
         """
         adjectiveCount = 0
-        findAdjective = re.compile('JJ')
+        totalAdjectiveCount = 0
+        findAdjective = re.compile("\'JJ\w?\'")
         for x in aList:
-            if findAdjective.search(str(x)) is not None:
-                adjectiveCount += 1
-    #       print( adjectiveCount )
-        return adjectiveCount
+            for y in x:
+                #print "Scanning..." + str(y)
+                if findAdjective.search(str(y)) is not None:
+                    adjectiveCount += 1
+            print "\nScanning..." + str(x)
+            print "\tAdjectives found: " + str(adjectiveCount)  # TODO instead of printing here, call function to add to 2D array
+            totalAdjectiveCount += adjectiveCount
+            adjectiveCount = 0
+        return totalAdjectiveCount
+
+##############################################################################
+
+    def countPronouns( self, aList ):
+        """
+        Takes a list of strings and returns the count of total pronouns in list.
+
+        Args:
+                aList: a list of strings for processing
+                                ex.  "text"
+
+        Returns:
+                Integer value of the count of total pronouns in list
+        """
+        pronounCount = 0
+        totalPronounCount = 0
+        findPronoun = re.compile("[\'PRP\w?\'|\'WP\w?\']")
+        for x in aList:
+            for y in x:
+                #print "Scanning..." + str(y)
+                if findPronoun.search(str(y)) is not None:
+                    pronounCount += 1
+            print "\nScanning..." + str(x)
+            print "\tPronouns found: " + str(pronounCount)  # TODO instead of printing here, call function to add to 2D array
+            totalPronounCount += pronounCount
+            pronounCount = 0
+        return totalPronounCount
+
+##############################################################################
+
+    def countAdverbs( self, aList ):
+        """
+        Takes a list of strings and returns the count of total adverbs in list.
+
+        Args:
+                aList: a list of strings for processing
+                                ex.  "text"
+
+        Returns:
+                Integer value of the count of total adverbs in list
+        """
+        adverbCount = 0
+        totalAdverbCount = 0
+        findAdverb = re.compile("\'RB\w?\'")
+        for x in aList:
+            for y in x:
+                #print "Scanning..." + str(y)
+                if findAdverb.search(str(y)) is not None:
+                    adverbCount += 1
+            print "\nScanning..." + str(x)
+            print "\tAdverbs found: " + str(adverbCount)  # TODO instead of printing here, call function to add to 2D array
+            totalAdverbCount += adverbCount
+            adverbCount = 0
+        return totalAdverbCount
+
+##############################################################################
+
+    def countOther( self, aList ):
+        """
+        Takes a list of strings and returns the count of total non-verb, non-noun, non-adv, non-adj,
+                                and non-pronouns in list.
+
+        Args:
+                aList: a list of strings for processing
+                                ex.  "text"
+
+        Returns:
+                Integer value of the count of total non-verb, non-noun, non-adv, non-adj, and
+                                non-pronouns in list.
+        """
+        otherCount = 0
+        totalOtherCount = 0
+        findOther = re.compile("[\'$\'|\'\"\'|\'(\'|\')\'|\',\'|\'--\'|\'.\'|\'CC\'|\'CD\'|\'DT\'|\'EX\'|\'FW\'|\'IN\'|\'LS\'|\'MD\'|\'PDT\'|\'POS\'|\'RP\'|\'SYM\'|\'TO\'|\'UH\'|\'WDT\'|\'WRB\']")
+        for x in aList:
+            for y in x:
+                #print "Scanning..." + str(y)
+                if findOther.search(str(y)) is not None:
+                    otherCount += 1
+            print "\nScanning..." + str(x)
+            print "\tOthers found: " + str(otherCount)  # TODO instead of printing here, call function to add to 2D array
+            totalOtherCount += otherCount
+            otherCount = 0
+        return totalOtherCount
 
 ##############################################################################
 
