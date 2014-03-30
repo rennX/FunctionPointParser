@@ -27,7 +27,7 @@ if (len(sys.argv) == 2):
     choice = str(sys.argv[1])	
 else:
     choice = raw_input("""
-    Please choose a test to run:
+    Please enter the number of the test to run:
     \tq) quit
     \t1) processInput()
     \t2) tokenize()
@@ -44,7 +44,7 @@ else:
     \t13) updateArray()
     """)
 
-print choice
+#print choice
 
 for case in Switch(choice):
     if case('q'):
