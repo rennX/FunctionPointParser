@@ -207,7 +207,7 @@ class InputProcessor:
                 """
 
 		if blockNum == 'allBlocks':
-			print "allBlocks"
+			#print "allBlocks"
 			returnList = []
 			for block in self.outputList:
 				returnList.append(nltk.word_tokenize(block[1]))
