@@ -181,7 +181,7 @@ class BlockProcessor:
 
 ##############################################################################
 
-    def chunkNounPhrase(self, list):
+    def phraseChunker(self, aList, pattern):
         """
         Processes the 2nd column of the 2D array row by row - for each row
         the block is tokenized, tagged, noun phrases are chunked out
@@ -197,20 +197,20 @@ Returns:
 
         i=-1
         result = []
-        for s in list:
+        for s in aList:
             pos = nltk.pos_tag(s)
-            #print pos
-            # regex pattern to define noun phrase
-            #pattern = "NP: {<DT>?(<JJ>|<JJR>|<JJS>)*(<NN>|<NNP>|<NNPS>|<NNS>)*}"
-            pattern = """
-                NP: {<DT|PP\$>?(<JJ>|<JJR>|<JJS>)*(<NN>|<NNP>|<NNPS>|<NNS>|<POS>)+}
-                    {<NNP>+}
-                    {<NN>+}
-                    {<PRP>+}
-            """
             NPChunker = nltk.RegexpParser(pattern)
             result.append(NPChunker.parse(pos))
         return result
+
+#            regex pattern to define noun phrase
+#            pattern = """
+#                NP: {<DT|PP\$>?(<JJ>|<JJR>|<JJS>)*(<NN>|<NNP>|<NNPS>|<NNS>|<POS>)+}
+#                    {<NNP>+}
+#                    {<NN>+}
+#                    {<PRP>+}
+#            """
+
 
 ################################################################################
 
