@@ -297,3 +297,53 @@ Returns:
                         raise Exception("Invalid attrib parameter")
         aList[blockNum][colNum] = value
         return aList
+
+##############################################################################
+
+    def distinctWordCount(self,tokenized):
+        """
+        TODO add pydocs
+        """
+        # from tokenized blocks of words, create dictionary of distinct words
+        wordDict = {}
+        blockCount = -1 # start at -1, we will strip off 0th row
+        for block in tokenized:
+            blockCount += 1
+            if blockCount != 0: # skip over heading
+                for word in block:
+                    wordDict[word.lower()] = 0
+
+        wordCount = len(wordDict)
+
+        # initialize distinct word array
+        wordMat = ["Distinct_Word"]
+        for i in range(1,blockCount+1):
+            wordMat=numpy.hstack( (wordMat,["Block_"+str(i)]) )
+        wordMat = numpy.hstack ( (wordMat,["Total_Count"]) )
+
+        # add new row to wordMat for each word in wordDict
+        totalCount = 0
+        rowCount = 1
+        for word in wordDict: # for every word in wordDict
+            tempList=[word] # start a new tempList
+            blockCount = -1 # keep track of block we are parsing
+            for block in tokenized: # for every block in the tokenized list
+                blockCount += 1
+                if blockCount != 0: # skip over heading
+                    for w in block: # for every word in the block
+                        if w.lower() == word: # if the word matches the wordDict word
+                            wordDict[w.lower()] += 1 # increment the word count
+                    tempList.append(int(wordDict[word])) # after done with block, append count to tempList
+                totalCount += wordDict[word] # increment total count
+                wordDict[word] = 0 # reset word count for next block
+            tempList.append(int(totalCount)) # after all blocks done, append totalCount to tempList
+            totalCount = 0 # reset totalCount for next word in wordDict
+            wordMat = numpy.vstack( (wordMat,tempList) ) # done with that word, append tempList to wordMat
+
+        print wordMat
+        #print wordMat.shape
+        #print wordMat.ndim
+
+
+        
+

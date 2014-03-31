@@ -42,6 +42,7 @@ else:
     \t11) countOther()
     \t12) wordCount()
     \t13) updateArray()
+    \t14) distinctWordCount()
     """)
 
 #print choice
@@ -168,8 +169,14 @@ for case in Switch(choice):
         print "\n###################################################################################\n\n"
         break
     if case('14'):
+        print "Preparing to run distinctWordCount()"
         print "\n###################################################################################\n\n"
-        raise Exception("Invalid choice selected")
+        temp = bp.distinctWordCount(tokenize)
+        print "\n###################################################################################\n\n"
+        break
+    if case():
+         print "\n###################################################################################\n\n"
+         raise Exception("Invalid choice selected")
         
 
 
