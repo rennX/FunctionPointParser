@@ -86,11 +86,11 @@ for case in Switch(choice):
         break
     if case('5'):
         print"Preparing to run phraseChunker() for verbs"
-        print"Except it's not ready yet...." # still need to define verb phrase pattern
-        break
+        #print"Except it's not ready yet...." # still need to define verb phrase pattern
+        #break
         print "\n###################################################################################\n\n"
         pattern = """
-                VP: {}
+                VP: {<MD|TO|RB>?(<VB>|<VBD>|<VBG>|<VBN>|<VBP>|<VBZ>)+<RB>?}
         """
         verbPhrase = bp.phraseChunker(tokenize, pattern)
         for tree in verbPhrase:
