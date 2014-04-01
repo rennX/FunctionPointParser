@@ -369,8 +369,6 @@ Returns:
         for i in range(1,numBlocks+1):
             wordMat=numpy.hstack( (wordMat,["Block_"+str(i)+"_tf"]) )
             wordMat=numpy.hstack( (wordMat,["Block_"+str(i)+"_tfidf"]) )
-            
-        print wordMat
 
         # add new row to wordMat for each word in wordDict
         #totalCount = 0
@@ -380,7 +378,6 @@ Returns:
             blockCount = -1 # keep track of block we are parsing
             for block in tokenized: # for every block in the tokenized list
                 blockCount += 1
-                print "processing block" + str(blockCount)
                 numWords = 0
                 if blockCount != 0: # skip over heading
                     for w in block: # for every word in the block
@@ -402,11 +399,12 @@ Returns:
                 tempList[i] = round((tempList[i-1]*tempList[1]),3)
                 
             #totalCount = 0 # reset totalCount for next word in wordDict
-            print tempList
             wordMat = numpy.vstack( (wordMat,tempList) ) # done with that word, append tempList to wordMat
 
         for each in wordMat:
             print each
+            
+        numpy.savetxt("foo.csv", wordMat, delimiter=",", fmt="%s")
         #print wordMat.shape
         #print wordMat.ndim
 
