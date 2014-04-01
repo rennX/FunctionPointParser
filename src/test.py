@@ -43,6 +43,7 @@ else:
     \t12) wordCount()
     \t13) updateArray()
     \t14) distinctWordCount()
+    \t15) tf_idf_Count()
     """)
 
 #print choice
@@ -172,6 +173,12 @@ for case in Switch(choice):
         print "Preparing to run distinctWordCount()"
         print "\n###################################################################################\n\n"
         temp = bp.distinctWordCount(tokenize)
+        print "\n###################################################################################\n\n"
+        break
+    if case('15'):
+        print "Preparing to run tf_idf_Count()"
+        print "\n###################################################################################\n\n"
+        temp = bp.tf_idf_Count(tokenize)
         print "\n###################################################################################\n\n"
         break
     if case():

@@ -4,6 +4,7 @@
 
 import re
 import nltk
+import math
 
 from FileIo import *
 from InputProcessor import *
@@ -306,10 +307,10 @@ Returns:
         """
         # from tokenized blocks of words, create dictionary of distinct words
         wordDict = {}
-        blockCount = -1 # start at -1, we will strip off 0th row
+        numBlocks = -1 # start at -1, we will strip off 0th row
         for block in tokenized:
-            blockCount += 1
-            if blockCount != 0: # skip over heading
+            numBlocks += 1
+            if numBlocks != 0: # skip over heading
                 for word in block:
                     wordDict[word.lower()] = 0
 
@@ -317,13 +318,12 @@ Returns:
 
         # initialize distinct word array
         wordMat = ["Distinct_Word"]
-        for i in range(1,blockCount+1):
+        for i in range(1,numBlocks+1):
             wordMat=numpy.hstack( (wordMat,["Block_"+str(i)]) )
         wordMat = numpy.hstack ( (wordMat,["Total_Count"]) )
 
         # add new row to wordMat for each word in wordDict
         totalCount = 0
-        rowCount = 1
         for word in wordDict: # for every word in wordDict
             tempList=[word] # start a new tempList
             blockCount = -1 # keep track of block we are parsing
@@ -333,14 +333,80 @@ Returns:
                     for w in block: # for every word in the block
                         if w.lower() == word: # if the word matches the wordDict word
                             wordDict[w.lower()] += 1 # increment the word count
-                    tempList.append(int(wordDict[word])) # after done with block, append count to tempList
+                    count = int(wordDict[word])
+                    tempList.append(count) # after done with block, append count to tempList
                 totalCount += wordDict[word] # increment total count
                 wordDict[word] = 0 # reset word count for next block
             tempList.append(int(totalCount)) # after all blocks done, append totalCount to tempList
             totalCount = 0 # reset totalCount for next word in wordDict
             wordMat = numpy.vstack( (wordMat,tempList) ) # done with that word, append tempList to wordMat
 
+        for each in wordMat:
+            print each
+        #print wordMat.shape
+        #print wordMat.ndim
+        
+##############################################################################
+
+    def tf_idf_Count(self,tokenized):
+        """
+        TODO add pydocs
+        """
+        # from tokenized blocks of words, create dictionary of distinct words
+        wordDict = {}
+        numBlocks = -1 # start at -1, we will strip off 0th row
+        for block in tokenized:
+            numBlocks += 1
+            if numBlocks != 0: # skip over heading
+                for word in block:
+                    wordDict[word.lower()] = 0
+
+        wordCount = len(wordDict)
+       # print wordDict
+
+        # initialize distinct word array
+        wordMat = ["Distinct_Word", "IDF"]
+        for i in range(1,numBlocks+1):
+            wordMat=numpy.hstack( (wordMat,["Block_"+str(i)+"_tf"]) )
+            wordMat=numpy.hstack( (wordMat,["Block_"+str(i)+"_tfidf"]) )
+            
         print wordMat
+
+        # add new row to wordMat for each word in wordDict
+        #totalCount = 0
+        for word in wordDict: # for every word in wordDict
+            timesFound = 0
+            tempList=[word,"IDF HERE"] # start a new tempList
+            blockCount = -1 # keep track of block we are parsing
+            for block in tokenized: # for every block in the tokenized list
+                blockCount += 1
+                print "processing block" + str(blockCount)
+                numWords = 0
+                if blockCount != 0: # skip over heading
+                    for w in block: # for every word in the block
+                        numWords += 1
+                        if w.lower() == word: # if the word matches the wordDict word
+                            wordDict[w.lower()] += 1 # increment the word count
+                    count = int(wordDict[word])
+                    #tempList.append(count) # after done with block, append count to tempList
+                    if count is not 0:
+                        timesFound += 1
+                    tempList.append( round( (float(wordDict[word]) / float(numWords)),3 ) )
+                    tempList.append("tfidf"+str(blockCount))
+                #totalCount += wordDict[word] # increment total count
+                wordDict[word] = 0 # reset word count for next block
+            #tempList.append(int(totalCount)) # after all blocks done, append totalCount to tempList
+            invDocFreq = math.log(numBlocks/timesFound)
+            tempList[1] = round(invDocFreq,3)
+            for i in range(3,(numBlocks*2)+2,2):
+                tempList[i] = round((tempList[i-1]*tempList[1]),3)
+                
+            #totalCount = 0 # reset totalCount for next word in wordDict
+            print tempList
+            wordMat = numpy.vstack( (wordMat,tempList) ) # done with that word, append tempList to wordMat
+
+        for each in wordMat:
+            print each
         #print wordMat.shape
         #print wordMat.ndim
 
