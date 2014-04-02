@@ -173,12 +173,16 @@ for case in Switch(choice):
         print "Preparing to run distinctWordCount()"
         print "\n###################################################################################\n\n"
         temp = bp.distinctWordCount(tokenize)
+        for line in temp:
+            print line
         print "\n###################################################################################\n\n"
         break
     if case('15'):
         print "Preparing to run tf_idf_Count()"
         print "\n###################################################################################\n\n"
         temp = bp.tf_idf_Count(tokenize)
+        for line in temp:
+            print line
         print "\n###################################################################################\n\n"
         break
     if case():
