@@ -119,9 +119,9 @@ class InputProcessor:
 
 ##############################################################################
 
-	def numBlocks(self):
+	def numBlocks(self, aList):
 		"""
-		Returns the number of blocks in self.outputList.  
+		Returns the number of blocks in aList.  
 		Because there is header row, this is number of rows minus 1.
 	
 		Args:
@@ -131,16 +131,16 @@ class InputProcessor:
 			Integer value of blocks in the list
 		"""	
 
-		num = len(self.outputList)
+		num = len(aList)
 		blocks = num - 1
 	
 		return blocks
 
 ##############################################################################
 
-        def numCols(self):
+        def numCols(self, aList):
                 """
-                Returns the number of columns in self.outputList.  
+                Returns the number of columns in aList.  
         
                 Args:
                         None
@@ -149,15 +149,15 @@ class InputProcessor:
                         Integer value of columns in the list
                 """
 
-                num = len(self.outputList[0])
+                num = len(aList[0])
 
                 return num
 
 ##############################################################################
 
-        def printColumn(self,colNum):
+        def printColumn(self, aList ,colNum):
                 """
-                Prints out a particular column in self.outputList based on input parameter.  
+                Prints out a particular column in aList based on input parameter.  
         
                 Args:
                         colNum:  The column number to be printed. The list is zero-based, so 0 is the leftmost column.
@@ -167,14 +167,14 @@ class InputProcessor:
                 """
 
 		print "\nPrinting column " + str(colNum)
-		for val in self.outputList:
+		for val in aList:
 			print val[colNum]            
 
 ##############################################################################
 
-	def printRow(self,rowNum):
+	def printRow(self, aList ,rowNum):
                 """
-                Prints out a particular row in self.outputList based on input parameter.  
+                Prints out a particular row in aList based on input parameter.  
         
                 Args:
                         rowNum:  The row number to be printed. The list is zero-based, so 0 is the first row. 
@@ -184,7 +184,7 @@ class InputProcessor:
                         None
                 """
 		
-		sol = self.outputList
+		sol = aList
 		count = 0
                 print "\nPrinting row " + str(rowNum) + "..." 
 		for val in sol[rowNum]:
@@ -193,7 +193,7 @@ class InputProcessor:
 
 ##############################################################################
 
-        def tokenize(self, blockNum='allBlocks'):
+        def tokenize(self, aList, blockNum='allBlocks'):
                 """
                 Tokenizes a block of text using nltk.word_tokenize.  
         
@@ -209,12 +209,12 @@ class InputProcessor:
 		if blockNum == 'allBlocks':
 			#print "allBlocks"
 			returnList = []
-			for block in self.outputList:
+			for block in aList:
 				returnList.append(nltk.word_tokenize(block[1]))
 				
 				
 		else:
-			returnList = nltk.word_tokenize(self.outputList[blockNum][1])
+			returnList = nltk.word_tokenize(aList[blockNum][1])
 		
 		return returnList
 
@@ -222,7 +222,7 @@ class InputProcessor:
 
 	def getBlock(self, aList):
 		"""
-		Accepts a 2D array (aList).  Returns the column aList[i] minus the header (first) row.
+		Accepts a 2D array (aList).  Returns the column aList[1] minus the header (first) row.
 		
 		Args: aList
 		
