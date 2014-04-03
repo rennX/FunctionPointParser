@@ -128,7 +128,7 @@ tf_idfArray = bp.tf_idf_Count(tokenized)
 
 ##############################################################################
 
-# now we have out 3 data structures, lets convert to csv
+# now we have our 3 data structures, lets convert to csv
 numpy.savetxt("./output/the2DArray.csv", the2DArray, delimiter=",", fmt="%s")
 numpy.savetxt("./output/distinctWordCountArray.csv", distinctWordCountArray, delimiter=",", fmt="%s")
 numpy.savetxt("./output/tf_idfArray.csv", tf_idfArray, delimiter=",", fmt="%s")
