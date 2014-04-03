@@ -23,7 +23,7 @@ class InputProcessor:
 ##############################################################################
 
 	def __init__(self):
-		"""Initializes a new empty InputProcessor object."""
+		"""Initializes a new InputProcessor object. With """
 		pass
 
 ##############################################################################
@@ -100,7 +100,7 @@ class InputProcessor:
 			distinctWordCount contains the number of distinct words found in the block text.
 		"""
 
-		self.outputList = ['blockNumber','blockText','blockTags', 'nounCount', 'verbCount', 'pronounCount', 'adjCount', 'adverbCount', 'otherCount', 'totalWordCount', 'distinctWordCount']  
+		self.outputList = ['blockNumber','blockText','blockTags', 'nounCount', 'verbCount', 'pronounCount', 'adjCount', 'adverbCount', 'otherCount', 'totalWordCount']  
 		tagRegEx = re.compile(r'\[\[(.+?)\]\]')
 		blockCounter = 0
 
@@ -112,7 +112,7 @@ class InputProcessor:
 			else:
 			    tag = None
 			blockText = re.sub(tagRegEx,'',block)  # remove tag from block text
-			tempList = [str(blockCounter),blockText,tag, 0, 0, 0, 0, 0, 0, 0, 0]  # generates new row to be added to outputList
+			tempList = [str(blockCounter),blockText,tag, 0, 0, 0, 0, 0, 0, 0]  # generates new row to be added to outputList
 			self.outputList = numpy.vstack([self.outputList,tempList])  # add tempList as new row to self.outputList
 
 		return self.outputList
