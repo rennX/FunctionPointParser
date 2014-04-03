@@ -15,7 +15,8 @@ fio = FileIo(input)
 ip = InputProcessor()
 bp = BlockProcessor()
 processInput = ip.processInput(fio.getFile())
-tokenize = ip.tokenize()
+tokenized = ip.tokenize(processInput)
+pos = bp.posTagger(processInput)
 
 print "Original input text:"
 print "###################################################################################\n\n"
@@ -61,7 +62,7 @@ for case in Switch(choice):
     if case('2'):
         print"Preparing to run tokenize()"
         print "\n###################################################################################\n\n"
-        tokenize = ip.tokenize()
+        tokenize = ip.tokenize(processInput)
         print tokenize
         print "\n###################################################################################\n\n"
         break
@@ -150,8 +151,8 @@ for case in Switch(choice):
     if case('12'):
         print"Preparing to run wordCount()"
         print "\n###################################################################################\n\n"
-        words = bp.wordCount(ip.getBlock(processInput))
-        print "Total word count: " + str(words) + "\n\n"
+        wordCountDict = bp.countOther(pos)
+        print "Total word count: " + str(wordCountDict) + "\n\n"
         print "\n###################################################################################\n\n"
         break
     if case('13'):
@@ -161,18 +162,17 @@ for case in Switch(choice):
         processInput = bp.updateArray(processInput,5,'nounCount',42)
         processInput = bp.updateArray(processInput,5,'verbCount',42)
         processInput = bp.updateArray(processInput,5,'pronounCount',42)
-        processInput = bp.updateArray(processInput,5,'adjCount',42)
+        processInput = bp.updateArray(processInput,5,'adjectiveCount',42)
         processInput = bp.updateArray(processInput,5,'adverbCount',42)
         processInput = bp.updateArray(processInput,5,'otherCount',42)
         processInput = bp.updateArray(processInput,5,'totalWordCount',42)
-        processInput = bp.updateArray(processInput,5,'distinctWordCount',42)
         print processInput
         print "\n###################################################################################\n\n"
         break
     if case('14'):
         print "Preparing to run distinctWordCount()"
         print "\n###################################################################################\n\n"
-        temp = bp.distinctWordCount(tokenize)
+        temp = bp.distinctWordCount(tokenized)
         for line in temp:
             print line
         print "\n###################################################################################\n\n"
@@ -180,7 +180,7 @@ for case in Switch(choice):
     if case('15'):
         print "Preparing to run tf_idf_Count()"
         print "\n###################################################################################\n\n"
-        temp = bp.tf_idf_Count(tokenize)
+        temp = bp.tf_idf_Count(tokenized)
         for line in temp:
             print line
         print "\n###################################################################################\n\n"

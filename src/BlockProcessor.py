@@ -18,167 +18,171 @@ class BlockProcessor:
 
 ##############################################################################
 
-    def countNouns( self, aList ):
+    def countNouns( self, aPosList ):
         """
         Takes a list of strings and returns the count of total nouns in list.
 
         Args:
-                aList: a list of strings for processing
-                                ex.  "text"
+                aPosList: a list of pos tagged lists
+                                ex. [[('Business', 'NN'), ('requirements', 'NNS')], [('are', 'VBP'), ('what', 'WP')], [('must', 'MD'), ('be', 'VB'),('delivered', 'VBN')]]
 
         Returns:
-                Integer value of the count of total nouns in list
+                nounDict:  a dictionary with format <block number>:<number of nouns>, also 'total':<total number of nouns>
         """
-        nounCount = 0
-        totalNounCount = 0
         findNoun = re.compile("\'NN\w?\w?\'")
-        for x in aList:
-            for y in x:
-                #print "Scanning..." + str(y)
-                if findNoun.search(str(y)) is not None:
-                    nounCount += 1
-            print "\nScanning..." + str(x)
-            print "\tNouns found: " + str(nounCount)  # TODO instead of printing here, call function to add to 2D array
-            totalNounCount += nounCount
-            nounCount = 0
-        return totalNounCount
+        blockCount = -1
+        nounDict = { 'total': int(0) }
+        for x in aPosList:
+            blockCount += 1
+            if blockCount != 0: # skip over heading
+                nounDict[blockCount] = 0
+                for y in x:
+                    #print "Scanning..." + str(y)
+                    if findNoun.search(str(y)) is not None:
+                        nounDict[blockCount] += 1
+                        nounDict['total'] += 1
+                    
+        return nounDict
 
 ##############################################################################
 
-    def countVerbs( self, aList ):
+    def countVerbs( self, aPosList ):
         """
         Takes a list of strings and returns the count of total verbs in list.
 
         Args:
-                aList: a list of strings for processing
-                                ex.  "text"
+                aPosList: a list of pos tagged lists
+                                ex. [[('Business', 'NN'), ('requirements', 'NNS')], [('are', 'VBP'), ('what', 'WP')], [('must', 'MD'), ('be', 'VB'),('delivered', 'VBN')]]
 
         Returns:
-                Integer value of the count of total verbs in list
+                verbDict:  a dictionary with format <block number>:<number of verbs>, also 'total':<total number of verbs>
         """
-        verbCount = 0
-        totalVerbCount = 0
         findVerb = re.compile("\'VB\w?\'")
-        for x in aList:
-            for y in x:
-                #print "Scanning..." + str(y)
-                if findVerb.search(str(y)) is not None:
-                    verbCount += 1
-            print "\nScanning..." + str(x)
-            print "\tVerbs found: " + str(verbCount)  # TODO instead of printing here, call function to add to 2D array
-            totalVerbCount += verbCount
-            verbCount = 0
-        return totalVerbCount
+        blockCount = -1
+        verbDict = { 'total': int(0) }
+        for x in aPosList:
+            blockCount += 1
+            if blockCount != 0: # skip over heading
+                verbDict[blockCount] = 0
+                for y in x:
+                    #print "Scanning..." + str(y)
+                    if findVerb.search(str(y)) is not None:
+                        verbDict[blockCount] += 1
+                        verbDict['total'] += 1
+
+        return verbDict
 
 ##############################################################################
 
-    def countAdjectives( self, aList ):
+    def countAdjectives( self, aPosList ):
         """
         Takes a list of strings and returns the count of total adjectives in list.
 
         Args:
-                aList: a list of strings for processing
-                                ex.  "text"
+                aPosList: a list of pos tagged lists
+                                ex. [[('Business', 'NN'), ('requirements', 'NNS')], [('are', 'VBP'), ('what', 'WP')], [('must', 'MD'), ('be', 'VB'),('delivered', 'VBN')]]
 
         Returns:
-                Integer value of the count of total adjectives in list
+                adjectiveDict:  a dictionary with format <block number>:<number of adjectives>, also 'total':<total number of adjectives>
         """
-        adjectiveCount = 0
-        totalAdjectiveCount = 0
         findAdjective = re.compile("\'JJ\w?\'")
-        for x in aList:
-            for y in x:
-                #print "Scanning..." + str(y)
-                if findAdjective.search(str(y)) is not None:
-                    adjectiveCount += 1
-            print "\nScanning..." + str(x)
-            print "\tAdjectives found: " + str(adjectiveCount)  # TODO instead of printing here, call function to add to 2D array
-            totalAdjectiveCount += adjectiveCount
-            adjectiveCount = 0
-        return totalAdjectiveCount
+        blockCount = -1
+        adjectiveDict = { 'total': int(0) }
+        for x in aPosList:
+            blockCount += 1
+            if blockCount != 0: # skip over heading
+                adjectiveDict[blockCount] = 0
+                for y in x:
+                    #print "Scanning..." + str(y)
+                    if findAdjective.search(str(y)) is not None:
+                        adjectiveDict[blockCount] += 1
+                        adjectiveDict['total'] += 1
+                    
+        return adjectiveDict
 
 ##############################################################################
 
-    def countPronouns( self, aList ):
+    def countPronouns( self, aPosList ):
         """
         Takes a list of strings and returns the count of total pronouns in list.
 
         Args:
-                aList: a list of strings for processing
-                                ex.  "text"
+                aPosList: a list of pos tagged lists
+                                ex. [[('Business', 'NN'), ('requirements', 'NNS')], [('are', 'VBP'), ('what', 'WP')], [('must', 'MD'), ('be', 'VB'),('delivered', 'VBN')]]
 
         Returns:
-                Integer value of the count of total pronouns in list
+                pronounDict:  a dictionary with format <block number>:<number of pronouns>, also 'total':<total number of pronouns>
         """
-        pronounCount = 0
-        totalPronounCount = 0
         findPronoun = re.compile("[\'PRP\w?\'|\'WP\w?\']")
-        for x in aList:
-            for y in x:
-                #print "Scanning..." + str(y)
-                if findPronoun.search(str(y)) is not None:
-                    pronounCount += 1
-            print "\nScanning..." + str(x)
-            print "\tPronouns found: " + str(pronounCount)  # TODO instead of printing here, call function to add to 2D array
-            totalPronounCount += pronounCount
-            pronounCount = 0
-        return totalPronounCount
+        blockCount = -1
+        pronounDict = { 'total': int(0) }
+        for x in aPosList:
+            blockCount += 1
+            if blockCount != 0: # skip over heading
+                pronounDict[blockCount] = 0
+                for y in x:
+                    #print "Scanning..." + str(y)
+                    if findPronoun.search(str(y)) is not None:
+                        pronounDict[blockCount] += 1
+                        pronounDict['total'] += 1
+                    
+        return pronounDict
 
 ##############################################################################
 
-    def countAdverbs( self, aList ):
+    def countAdverbs( self, aPosList ):
         """
         Takes a list of strings and returns the count of total adverbs in list.
 
         Args:
-                aList: a list of strings for processing
-                                ex.  "text"
+                aPosList: a list of pos tagged lists
+                                ex. [[('Business', 'NN'), ('requirements', 'NNS')], [('are', 'VBP'), ('what', 'WP')], [('must', 'MD'), ('be', 'VB'),('delivered', 'VBN')]]
 
         Returns:
-                Integer value of the count of total adverbs in list
+                adverbDict:  a dictionary with format <block number>:<number of adverbs>, also 'total':<total number of adverbs>
         """
-        adverbCount = 0
-        totalAdverbCount = 0
         findAdverb = re.compile("\'RB\w?\'")
-        for x in aList:
-            for y in x:
-                #print "Scanning..." + str(y)
-                if findAdverb.search(str(y)) is not None:
-                    adverbCount += 1
-            print "\nScanning..." + str(x)
-            print "\tAdverbs found: " + str(adverbCount)  # TODO instead of printing here, call function to add to 2D array
-            totalAdverbCount += adverbCount
-            adverbCount = 0
-        return totalAdverbCount
+        blockCount = -1
+        adverbDict = { 'total': int(0) }
+        for x in aPosList:
+            blockCount += 1
+            if blockCount != 0: # skip over heading
+                adverbDict[blockCount] = 0
+                for y in x:
+                    #print "Scanning..." + str(y)
+                    if findAdverb.search(str(y)) is not None:
+                        adverbDict[blockCount] += 1
+                        adverbDict['total'] += 1
+                    
+        return adverbDict
 
 ##############################################################################
 
-    def countOther( self, aList ):
+    def countOther( self, aPosList ):
         """
-        Takes a list of strings and returns the count of total non-verb, non-noun, non-adv, non-adj,
-                                and non-pronouns in list.
+        Takes a list of strings and returns the count of total other parts of speech in list.
 
         Args:
-                aList: a list of strings for processing
-                                ex.  "text"
+                aPosList: a list of pos tagged lists
+                                ex. [[('Business', 'NN'), ('requirements', 'NNS')], [('are', 'VBP'), ('what', 'WP')], [('must', 'MD'), ('be', 'VB'),('delivered', 'VBN')]]
 
         Returns:
-                Integer value of the count of total non-verb, non-noun, non-adv, non-adj, and
-                                non-pronouns in list.
+                otherDict:  a dictionary with format <block number>:<number of others>, also 'total':<total number of others>
         """
-        otherCount = 0
-        totalOtherCount = 0
         findOther = re.compile("[\'$\'|\'\"\'|\'(\'|\')\'|\',\'|\'--\'|\'.\'|\'CC\'|\'CD\'|\'DT\'|\'EX\'|\'FW\'|\'IN\'|\'LS\'|\'MD\'|\'PDT\'|\'POS\'|\'RP\'|\'SYM\'|\'TO\'|\'UH\'|\'WDT\'|\'WRB\']")
-        for x in aList:
-            for y in x:
-                #print "Scanning..." + str(y)
-                if findOther.search(str(y)) is not None:
-                    otherCount += 1
-            print "\nScanning..." + str(x)
-            print "\tOthers found: " + str(otherCount)  # TODO instead of printing here, call function to add to 2D array
-            totalOtherCount += otherCount
-            otherCount = 0
-        return totalOtherCount
+        blockCount = -1
+        otherDict = { 'total': int(0) }
+        for x in aPosList:
+            blockCount += 1
+            if blockCount != 0: # skip over heading
+                otherDict[blockCount] = 0
+                for y in x:
+                    #print "Scanning..." + str(y)
+                    if findOther.search(str(y)) is not None:
+                        otherDict[blockCount] += 1
+                        otherDict['total'] += 1
+                    
+        return otherDict
 
 ##############################################################################
 
@@ -216,6 +220,9 @@ Returns:
 ################################################################################
 
     def posTagger(self, aList):
+        """
+        TODO add pydocs
+        """
         posList = []
         for block in aList:
             text = nltk.word_tokenize(block[1])
@@ -236,16 +243,21 @@ Returns:
         Returns:
                 Integer value of the count of total words in list
         """
-
+        
         notWord = re.compile('^[\.|,|;|\(|\)|\[|\]]$')
-        wordCount = 0
-        for block in aList:
-            text = nltk.word_tokenize(block)
-            for word in text:
-                if notWord.search( str(word) ) is None:
-                    wordCount += 1
-
-        return wordCount
+        blockCount = -1
+        wordCountDict = { 'total': int(0) }
+        for x in aList:
+            blockCount += 1
+            if blockCount != 0: # skip over heading
+                wordCountDict[blockCount] = 0
+                for y in x:
+                    #print "Scanning..." + str(y)
+                    if notWord.search(str(y)) is not None:
+                        wordCountDict[blockCount] += 1
+                        wordCountDict['total'] += 1
+                    
+        return wordCountDict
 
 ##############################################################################
 
@@ -271,7 +283,6 @@ Returns:
         for case in Switch(attrib):
                 if case('nounCount'):
                         colNum = 3
-                        print "I should be updating ["+str(blockNum)+"]["+str(colNum)+"] with " + str(value)
                         break
                 if case('verbCount'):
                         colNum = 4
@@ -279,7 +290,7 @@ Returns:
                 if case('pronounCount'):
                         colNum = 5              
                         break
-                if case('adjCount'):
+                if case('adjectiveCount'):
                         colNum = 6
                         break
                 if case('adverbCount'):
@@ -295,7 +306,7 @@ Returns:
                         colNum = 10
                         break
                 if case():
-                        raise Exception("Invalid attrib parameter")
+                        raise Exception("Invalid attrib parameter: " + str(attrib))
         aList[blockNum][colNum] = value
         return aList
 
