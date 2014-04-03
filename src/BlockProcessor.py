@@ -34,7 +34,7 @@ class BlockProcessor:
         nounDict = { 'total': int(0) }
         for x in aPosList:
             blockCount += 1
-            if blockCount != 0: # skip over heading
+            if blockCount != 0 and blockCount != (len(aPosList)-1): # skip over heading and total
                 nounDict[blockCount] = 0
                 for y in x:
                     #print "Scanning..." + str(y)
@@ -62,7 +62,7 @@ class BlockProcessor:
         verbDict = { 'total': int(0) }
         for x in aPosList:
             blockCount += 1
-            if blockCount != 0: # skip over heading
+            if blockCount != 0 and blockCount != (len(aPosList)-1): # skip over heading
                 verbDict[blockCount] = 0
                 for y in x:
                     #print "Scanning..." + str(y)
@@ -90,7 +90,7 @@ class BlockProcessor:
         adjectiveDict = { 'total': int(0) }
         for x in aPosList:
             blockCount += 1
-            if blockCount != 0: # skip over heading
+            if blockCount != 0 and blockCount != (len(aPosList)-1): # skip over heading
                 adjectiveDict[blockCount] = 0
                 for y in x:
                     #print "Scanning..." + str(y)
@@ -113,18 +113,19 @@ class BlockProcessor:
         Returns:
                 pronounDict:  a dictionary with format <block number>:<number of pronouns>, also 'total':<total number of pronouns>
         """
-        findPronoun = re.compile("[\'PRP\w?\'|\'WP\w?\']")
+        findPronoun = re.compile("[\'PRP\$?\'|\'WP\$?\']")
         blockCount = -1
         pronounDict = { 'total': int(0) }
         for x in aPosList:
             blockCount += 1
-            if blockCount != 0: # skip over heading
+            if blockCount != 0 and blockCount != (len(aPosList)-1): # skip over heading
                 pronounDict[blockCount] = 0
                 for y in x:
                     #print "Scanning..." + str(y)
                     if findPronoun.search(str(y)) is not None:
                         pronounDict[blockCount] += 1
                         pronounDict['total'] += 1
+                        print "Found pronoun: " + str(y) + "Block:" +str(pronounDict[blockCount])+ "Total:"+ str(pronounDict['total'])
                     
         return pronounDict
 
@@ -146,7 +147,7 @@ class BlockProcessor:
         adverbDict = { 'total': int(0) }
         for x in aPosList:
             blockCount += 1
-            if blockCount != 0: # skip over heading
+            if blockCount != 0 and blockCount != (len(aPosList)-1): # skip over heading
                 adverbDict[blockCount] = 0
                 for y in x:
                     #print "Scanning..." + str(y)
@@ -174,7 +175,7 @@ class BlockProcessor:
         otherDict = { 'total': int(0) }
         for x in aPosList:
             blockCount += 1
-            if blockCount != 0: # skip over heading
+            if blockCount != 0 and blockCount != (len(aPosList)-1): # skip over heading
                 otherDict[blockCount] = 0
                 for y in x:
                     #print "Scanning..." + str(y)
@@ -249,7 +250,7 @@ Returns:
         wordCountDict = { 'total': int(0) }
         for x in aList:
             blockCount += 1
-            if blockCount != 0: # skip over heading
+            if blockCount != 0 and blockCount != (len(aPosList)-1): # skip over heading
                 wordCountDict[blockCount] = 0
                 for y in x:
                     #print "Scanning..." + str(y)
@@ -271,7 +272,7 @@ Returns:
                 aList: the 2D array to be updated
 
                 blockNum: the block number to be updated.  Valid values are:
-                        'nounCount', 'verbCount', 'pronounCount', 'adjCount', 'adverbCount', 'otherCount', 'totalWordCount', 'distinctWordCount'
+                        'nounCount', 'verbCount', 'pronounCount', 'adjCount', 'adverbCount', 'otherCount', 'totalWordCount'
 
                 attrib: the attribute of the block to be updated
 
@@ -301,9 +302,6 @@ Returns:
                         break
                 if case('totalWordCount'):
                         colNum = 9
-                        break
-                if case('distinctWordCount'):
-                        colNum = 10
                         break
                 if case():
                         raise Exception("Invalid attrib parameter: " + str(attrib))

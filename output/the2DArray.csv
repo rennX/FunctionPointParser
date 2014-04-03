@@ -6,3 +6,4 @@ blockNumber,blockText,blockTags,nounCount,verbCount,pronounCount,adjCount,adverb
 5,Business requirements are often listed in a Business Requirements Document or BRD. ,EO,EI,6,2,13,0,1,13,13
 6,The market for system-management software for Digital's hardware is fragmented enough that a giant such as Computer Associates should do well there.,None,6,3,24,3,3,24,24
 7,We saw the lazy fat short yellow dog.,None,5,1,9,0,0,9,9
+total,This row contains overall totals of the parts of speech and word count,None,37,15,97,5,7,97,97

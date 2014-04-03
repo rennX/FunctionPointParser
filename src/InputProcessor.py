@@ -114,6 +114,8 @@ class InputProcessor:
 			blockText = re.sub(tagRegEx,'',block)  # remove tag from block text
 			tempList = [str(blockCounter),blockText,tag, 0, 0, 0, 0, 0, 0, 0]  # generates new row to be added to outputList
 			self.outputList = numpy.vstack([self.outputList,tempList])  # add tempList as new row to self.outputList
+		tempList = ["total","This row contains overall totals of the parts of speech and word count", None, 0, 0, 0, 0, 0, 0, 0] # add total row to the2DArray
+		self.outputList = numpy.vstack([self.outputList,tempList]) # add tempList as new row to self.outputList
 
 		return self.outputList
 
