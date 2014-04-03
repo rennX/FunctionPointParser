@@ -99,7 +99,6 @@ for key, value in otherDict.iteritems() :
 
 # count words per block and total, update the2DArray
 wordCountDict = bp.countOther(pos)
-print wordCountDict
 for key, value in wordCountDict.iteritems() :
     if key is 'total':
         totalWordCount = value
@@ -129,9 +128,9 @@ tf_idfArray = bp.tf_idf_Count(tokenized)
 ##############################################################################
 
 # now we have our 3 data structures, lets convert to csv
-numpy.savetxt("./output/the2DArray.csv", the2DArray, delimiter=",", fmt="%s")
-numpy.savetxt("./output/distinctWordCountArray.csv", distinctWordCountArray, delimiter=",", fmt="%s")
-numpy.savetxt("./output/tf_idfArray.csv", tf_idfArray, delimiter=",", fmt="%s")
+numpy.savetxt("../output/the2DArray.csv", the2DArray, delimiter=",", fmt="%s")
+numpy.savetxt("../output/distinctWordCountArray.csv", distinctWordCountArray, delimiter=",", fmt="%s")
+numpy.savetxt("../output/tf_idfArray.csv", tf_idfArray, delimiter=",", fmt="%s")
 
 
 

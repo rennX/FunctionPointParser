@@ -1,0 +1,8 @@
+blockNumber,blockText,blockTags,nounCount,verbCount,pronounCount,adjCount,adverbCount,otherCount,totalWordCount
+1,Business requirements are what must be delivered to provide value. ,EO,EI,3,4,11,0,0,11,11
+2,Confusion arises for three main reasons. ,EI,3,0,7,1,0,7,7
+3,Such confusion can be avoided by recognizing that business requirements are not objectives but rather meet objectives. ,IEF,6,4,18,1,2,18,18
+4,In system or software development projects, business requirements usually requires authority from stakeholders.,None,8,1,15,0,1,15,15
+5,Business requirements are often listed in a Business Requirements Document or BRD. ,EO,EI,6,2,13,0,1,13,13
+6,The market for system-management software for Digital's hardware is fragmented enough that a giant such as Computer Associates should do well there.,None,6,3,24,3,3,24,24
+7,We saw the lazy fat short yellow dog.,None,5,1,9,0,0,9,9
