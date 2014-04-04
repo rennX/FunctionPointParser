@@ -14,16 +14,14 @@ class InputProcessor:
 	Attributes:
 		self.blockList:  list of blocks split off of block number (##1)
 
-		self.outputList:  2D array.  Row 0 is header row [block,text,tag].  
+		self.outputList:  2D array.  Row 0 is header row [['blockNumber','blockText','blockTags', 'nounCount', 'verbCount', 'pronounCount', 'adjCount', 'adverbCount', 'otherCount', 'totalWordCount']
 			  Each additional row contains data for an individual block.
-
-		**Note:  most functions rely on the self.outputList attribute.  This is  returned by the sepTag() function
 	"""		
 
 ##############################################################################
 
 	def __init__(self):
-		"""Initializes a new InputProcessor object. With """
+		"""Initializes a new empty InputProcessor object."""
 		pass
 
 ##############################################################################
@@ -85,7 +83,7 @@ class InputProcessor:
 
 		Returns: 
 			A two-dimensional array.
-			Row 0 contains headers ['blockNumber','blockText','blockTags', 'nounCount', 'verbCount', 'pronounCount', 'adjCount', 'adverbCount', 'otherCount', 'totalWordCount', 'distinctWordCount'].  
+			Row 0 contains headers ['blockNumber','blockText','blockTags', 'nounCount', 'verbCount', 'pronounCount', 'adjCount', 'adverbCount', 'otherCount', 'totalWordCount'].  
 			
 			blockNumber contains the index number of the block.
 			blockText contains the text of the block.
@@ -97,7 +95,6 @@ class InputProcessor:
 			adverbCount contains the number of adverbs found in the block text.
 			otherCount contains the number of other text characters found in the block text.
 			totalWordCount contains the number of words found in the block text.
-			distinctWordCount contains the number of distinct words found in the block text.
 		"""
 
 		self.outputList = ['blockNumber','blockText','blockTags', 'nounCount', 'verbCount', 'pronounCount', 'adjCount', 'adverbCount', 'otherCount', 'totalWordCount']  
@@ -127,7 +124,7 @@ class InputProcessor:
 		Because there is header row, this is number of rows minus 1.
 	
 		Args:
-			None
+            aList:  a list object to be proessed.
 
 		Returns:
 			Integer value of blocks in the list
@@ -145,7 +142,7 @@ class InputProcessor:
                 Returns the number of columns in aList.  
         
                 Args:
-                        None
+                        aList:  a list object to be proessed.
 
                 Returns:
                         Integer value of columns in the list
@@ -163,6 +160,7 @@ class InputProcessor:
         
                 Args:
                         colNum:  The column number to be printed. The list is zero-based, so 0 is the leftmost column.
+                        aList:  a list object to be proessed.
 
                 Returns:
                         None
@@ -180,7 +178,8 @@ class InputProcessor:
         
                 Args:
                         rowNum:  The row number to be printed. The list is zero-based, so 0 is the first row. 
-				 Thr first row is also the header row.
+				 The first row is also the header row.
+                        aList:  a list object to be proessed.
 
                 Returns:
                         None
@@ -202,6 +201,7 @@ class InputProcessor:
                 Args:
                         blockNum:  (default:  allBlocks) If a blockNum is provided, only that particular block is tokenized. 
 				If no blockNum is provided, all blocks are tokenized.
+                        aList:  a list object to be proessed.
 
                 Returns:
                         If blockNum is specified, returns a list of tokenized words. 
@@ -226,9 +226,11 @@ class InputProcessor:
 		"""
 		Accepts a 2D array (aList).  Returns the column aList[1] minus the header (first) row.
 		
-		Args: aList
+		Args: 
+            aList:  a list object to be proessed.
 		
-		Returns:  blockList - a list with one block per entry
+		Returns:  
+            blockList - a list with one block per entry
 		
 		"""
 		rowCount = 1
