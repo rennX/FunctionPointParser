@@ -5,10 +5,12 @@
 import re
 import nltk
 import math
+import string
 
 from FileIo import *
 from InputProcessor import *
 from Switch import *
+from nltk.corpus import stopwords
 
 class BlockProcessor:
 
@@ -113,7 +115,7 @@ class BlockProcessor:
         Returns:
                 pronounDict:  a dictionary with format <block number>:<number of pronouns>, also 'total':<total number of pronouns>
         """
-        findPronoun = re.compile("[\'PRP\$?\'|\'WP\$?\']")
+        findPronoun = re.compile("\'PRP\$?\'|\'WP\$?\'")
         blockCount = -1
         pronounDict = { 'total': int(0) }
         for x in aPosList:
@@ -125,7 +127,7 @@ class BlockProcessor:
                     if findPronoun.search(str(y)) is not None:
                         pronounDict[blockCount] += 1
                         pronounDict['total'] += 1
-                        print "Found pronoun: " + str(y) + "Block:" +str(pronounDict[blockCount])+ "Total:"+ str(pronounDict['total'])
+                        #print "Found pronoun: " + str(y) + "Block:" +str(pronounDict[blockCount])+ "Total:"+ str(pronounDict['total'])
                     
         return pronounDict
 
@@ -170,7 +172,7 @@ class BlockProcessor:
         Returns:
                 otherDict:  a dictionary with format <block number>:<number of others>, also 'total':<total number of others>
         """
-        findOther = re.compile("[\'$\'|\'\"\'|\'(\'|\')\'|\',\'|\'--\'|\'.\'|\'CC\'|\'CD\'|\'DT\'|\'EX\'|\'FW\'|\'IN\'|\'LS\'|\'MD\'|\'PDT\'|\'POS\'|\'RP\'|\'SYM\'|\'TO\'|\'UH\'|\'WDT\'|\'WRB\']")
+        findOther = re.compile("\'$\'|\'\"\'|\'(\'|\')\'|\',\'|\'--\'|\'CC\'|\'CD\'|\'DT\'|\'EX\'|\'FW\'|\'IN\'|\'LS\'|\'MD\'|\'PDT\'|\'POS\'|\'RP\'|\'SYM\'|\'TO\'|\'UH\'|\'WDT\'|\'WRB\'")
         blockCount = -1
         otherDict = { 'total': int(0) }
         for x in aPosList:
@@ -220,6 +222,12 @@ Returns:
 
 ################################################################################
 
+    def removeCommas(self,aList):
+        for block in aList:
+            block[1] = block[1].replace(',',"")
+            block[2] = str(block[2]).replace(',',"|")
+        return aList
+    
     def posTagger(self, aList):
         """
         TODO add pydocs
@@ -227,6 +235,7 @@ Returns:
         posList = []
         for block in aList:
             text = nltk.word_tokenize(block[1])
+            #filtered_words = [w for w in text if not w in ',' and not w in stopwords.words('english')]
             pos = nltk.pos_tag(text)
             posList.append(pos)
         return posList
@@ -244,17 +253,17 @@ Returns:
         Returns:
                 Integer value of the count of total words in list
         """
-        
-        notWord = re.compile('^[\.|,|;|\(|\)|\[|\]]$')
+        isWord = re.compile("\w+\-?\w+")
         blockCount = -1
         wordCountDict = { 'total': int(0) }
         for x in aList:
             blockCount += 1
-            if blockCount != 0 and blockCount != (len(aPosList)-1): # skip over heading
+            if blockCount != 0 and blockCount != (len(aList)-1): # skip over heading
                 wordCountDict[blockCount] = 0
                 for y in x:
-                    #print "Scanning..." + str(y)
-                    if notWord.search(str(y)) is not None:
+                    #print "Scanning..."+str(y)
+                    if isWord.search(str(y)) is not None:
+                        #print "Found..."+str(y)
                         wordCountDict[blockCount] += 1
                         wordCountDict['total'] += 1
                     
@@ -321,7 +330,8 @@ Returns:
             numBlocks += 1
             if numBlocks != 0: # skip over heading
                 for word in block:
-                    wordDict[word.lower()] = 0
+                    if word is not '.':
+                        wordDict[word.lower()] = 0
 
         wordCount = len(wordDict)
 
@@ -348,6 +358,7 @@ Returns:
                 wordDict[word] = 0 # reset word count for next block
             tempList.append(int(totalCount)) # after all blocks done, append totalCount to tempList
             totalCount = 0 # reset totalCount for next word in wordDict
+            #print tempList
             wordMat = numpy.vstack( (wordMat,tempList) ) # done with that word, append tempList to wordMat
 
         return wordMat
@@ -365,7 +376,8 @@ Returns:
             numBlocks += 1
             if numBlocks != 0: # skip over heading
                 for word in block:
-                    wordDict[word.lower()] = 0
+                    if word is not '.':
+                        wordDict[word.lower()] = 0
 
         wordCount = len(wordDict)
 

@@ -16,9 +16,10 @@ ip = InputProcessor()
 bp = BlockProcessor()
 
 the2DArray = ip.processInput(fio.getFile())
+the2DArray = bp.removeCommas(the2DArray)
+#print the2DArray
 tokenized = ip.tokenize(the2DArray)
 pos = bp.posTagger(the2DArray)
-totalNouns = None
 
 ##############################################################################
 
@@ -98,7 +99,7 @@ for key, value in otherDict.iteritems() :
 ##############################################################################
 
 # count words per block and total, update the2DArray
-wordCountDict = bp.countOther(pos)
+wordCountDict = bp.wordCount(tokenized)
 for key, value in wordCountDict.iteritems() :
     if key is 'total':
         totalWordCount = value
@@ -107,13 +108,13 @@ for key, value in wordCountDict.iteritems() :
 
 ##############################################################################
 
-print "Nouns: "+str(totalNouns)
-print "Verbs: "+str(totalVerbs)
-print "Adjectives: "+str(totalAdjectives)
-print "Pronouns: "+str(totalPronouns)
-print "Adverbs: "+str(totalAdverbs)
-print "Other: "+str(totalOther)
-print "Word Count: "+str(totalWordCount)
+#print "Nouns: "+str(totalNouns)
+#print "Verbs: "+str(totalVerbs)
+#print "Adjectives: "+str(totalAdjectives)
+#print "Pronouns: "+str(totalPronouns)
+#print "Adverbs: "+str(totalAdverbs)
+#print "Other: "+str(totalOther)
+#print "Word Count: "+str(totalWordCount)
 the2DArray = bp.updateArray(the2DArray,len(the2DArray)-1,'nounCount',totalNouns)
 the2DArray = bp.updateArray(the2DArray,len(the2DArray)-1,'verbCount',totalVerbs)
 the2DArray = bp.updateArray(the2DArray,len(the2DArray)-1,'adjectiveCount',totalAdjectives)
@@ -121,7 +122,7 @@ the2DArray = bp.updateArray(the2DArray,len(the2DArray)-1,'pronounCount',totalPro
 the2DArray = bp.updateArray(the2DArray,len(the2DArray)-1,'adverbCount',totalAdverbs)
 the2DArray = bp.updateArray(the2DArray,len(the2DArray)-1,'otherCount',totalOther)
 the2DArray = bp.updateArray(the2DArray,len(the2DArray)-1,'totalWordCount',totalWordCount)
-print the2DArray
+#print the2DArray
 
 ##TODO To handle a the totals we will need to add an additional row to 
 ##TODO the2DArray.  It can be block number 'total', block text
