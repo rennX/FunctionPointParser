@@ -1,6 +1,25 @@
-# This class provides the functionality we want. You only need to look at
-# this if you want to know how this works. It only needs to be defined
-# once, no need to muck around with its internals.
+"""
+This class provides the functionality for java-like switch statements.
+
+Usage:
+    v='ten'
+    for case in Switch(v):
+        if case('one'):
+            print 1
+            break
+        if case('two'):
+            print 2
+            break
+        if case('ten'):
+            print 10
+            break
+        if case('eleven'):
+            print 11
+            break
+        if case(): # default, could also just omit condition or 'if True'
+            print "something else!"
+"""
+
 class Switch(object):
     def __init__(self, value):
         self.value = value
@@ -20,22 +39,3 @@ class Switch(object):
             return True
         else:
             return False
-
-
-#Usage:
-#v='ten'
-#for case in Switch(v):
-#    if case('one'):
-#        print 1
-#        break
-#  if case('two'):
-#        print 2
-#        break
-#    if case('ten'):
-#        print 10
-#        break
-#    if case('eleven'):
-#        print 11
-#        break
-#    if case(): # default, could also just omit condition or 'if True'
-#        print "something else!"
