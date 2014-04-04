@@ -197,10 +197,12 @@ class BlockProcessor:
         the head
 
 Args:
-        TODO
+        aList: a 2DArray of blocks and assoicated values
+        pattern: the regex pattern to use for word phrase chunking
 
 Returns:
-        TODO
+        A list of lists.  Each list is block of text chunked based on the input pattern
+        and formatted into a sentence tree structure.
 """
 
         i=-1
@@ -211,15 +213,6 @@ Returns:
             result.append(NPChunker.parse(pos))
         return result
 
-#            regex pattern to define noun phrase
-#            pattern = """
-#                NP: {<DT|PP\$>?(<JJ>|<JJR>|<JJS>)*(<NN>|<NNP>|<NNPS>|<NNS>|<POS>)+}
-#                    {<NNP>+}
-#                    {<NN>+}
-#                    {<PRP>+}
-#            """
-
-
 ################################################################################
 
     def removeCommas(self,aList):
@@ -227,10 +220,18 @@ Returns:
             block[1] = block[1].replace(',',"")
             block[2] = str(block[2]).replace(',',"|")
         return aList
+
+################################################################################$
     
     def posTagger(self, aList):
         """
-        TODO add pydocs
+        Processes the2DArray to determine and label the part of speech for each word
+
+        Args:
+            aList: a 2DArray of blocks and associated values
+
+        Returns:
+            A list of lists.  Each list is a block of text tokenized with parts of speech
         """
         posList = []
         for block in aList:
@@ -321,7 +322,14 @@ Returns:
 
     def distinctWordCount(self,tokenized):
         """
-        TODO add pydocs
+        Processes blocks of text to determine distinct words and the frequency with which they occur
+
+        Args:
+            tokenized: a list of lists with each list containing tokenized text for one block of input
+
+        Returns:
+            wordMat: a 2d array containing distinct words on the y-axis and count per block and in
+            total on the x-axis
         """
         # from tokenized blocks of words, create dictionary of distinct words
         wordDict = {}
@@ -367,7 +375,14 @@ Returns:
 
     def tf_idf_Count(self,tokenized):
         """
-        TODO add pydocs
+        Processes blocks of text to determine term frequency and inverse document frequency data (tf-idf)
+
+        Args:
+            tokenized: a list of lists with each list containing tokenized text for one block of input
+
+        Returns:
+            wordMat: a 2d array containing distinct words on the y-axis and tf-idf data per block
+            on the x-axis
         """
         # from tokenized blocks of words, create dictionary of distinct words
         wordDict = {}
@@ -414,8 +429,3 @@ Returns:
             wordMat = numpy.vstack( (wordMat,tempList) ) # done with that word, append tempList to wordMat
 
         return wordMat
-#        numpy.savetxt("foo.csv", wordMat, delimiter=",", fmt="%s")
-
-
-        
-
