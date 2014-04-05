@@ -38,10 +38,18 @@ class InputProcessor:
 				
 		Returns: 
 			A two-dimensional array.
-			Row 0 contains headers [block, test, tag].  
-			Block contains the index number of the block.
-			Test contains the text of the block.
-			Tag contains the tags associated with the block.
+			Row 0 contains headers ['blockNumber','blockText','blockTags', 'nounCount', 'verbCount', 'pronounCount', 'adjCount', 'adverbCount', 'otherCount', 'totalWordCount'].  
+			
+			blockNumber contains the index number of the block.
+			blockText contains the text of the block.
+			blockTags contains the tags associated with the block.
+			nounCount contains the number of nouns found in the block text.
+			verbCount contains the number of verbs found in the block text.
+			pronounCount contains the number of pronouns found in the block text.
+			adjCount contains the number of adjectives found in the block text.
+			adverbCount contains the number of adverbs found in the block text.
+			otherCount contains the number of other text characters found in the block text.
+			totalWordCount contains the number of words found in the block text.
 
 		"""
 		return (self._sepTag(self._parseBlock(inFile)))
