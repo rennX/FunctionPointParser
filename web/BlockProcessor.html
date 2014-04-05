@@ -17,9 +17,11 @@
 <font color="#ffffff" face="helvetica, arial"><big><strong>Modules</strong></big></font></td></tr>
     
 <tr><td bgcolor="#aa55cc"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
-<td width="100%"><table width="100%" summary="list"><tr><td width="25%" valign=top><a href="nltk.html">nltk</a><br>
+<td width="100%"><table width="100%" summary="list"><tr><td width="25%" valign=top><a href="math.html">math</a><br>
+<a href="nltk.html">nltk</a><br>
 </td><td width="25%" valign=top><a href="numpy.html">numpy</a><br>
-</td><td width="25%" valign=top><a href="re.html">re</a><br>
+<a href="re.html">re</a><br>
+</td><td width="25%" valign=top><a href="string.html">string</a><br>
 </td><td width="25%" valign=top></td></tr></table></td></tr></table><p>
 <table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
 <tr bgcolor="#ee77aa">
@@ -40,45 +42,115 @@
 <td width="100%">Methods defined here:<br>
 <dl><dt><a name="BlockProcessor-__init__"><strong>__init__</strong></a>(self)</dt><dd><tt>Initializes&nbsp;a&nbsp;new&nbsp;empty&nbsp;<a href="#BlockProcessor">BlockProcessor</a>&nbsp;object.</tt></dd></dl>
 
-<dl><dt><a name="BlockProcessor-chunkNounPhrase"><strong>chunkNounPhrase</strong></a>(self, list)</dt><dd><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Processes&nbsp;the&nbsp;2nd&nbsp;column&nbsp;of&nbsp;the&nbsp;2D&nbsp;array&nbsp;row&nbsp;by&nbsp;row&nbsp;-&nbsp;for&nbsp;each&nbsp;row&nbsp;<br>
+<dl><dt><a name="BlockProcessor-countAdjectives"><strong>countAdjectives</strong></a>(self, aPosList)</dt><dd><tt>Takes&nbsp;a&nbsp;list&nbsp;of&nbsp;strings&nbsp;and&nbsp;returns&nbsp;the&nbsp;count&nbsp;of&nbsp;total&nbsp;adjectives&nbsp;in&nbsp;list.<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;aPosList:&nbsp;a&nbsp;list&nbsp;of&nbsp;pos&nbsp;tagged&nbsp;lists<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ex.&nbsp;[[('Business',&nbsp;'NN'),&nbsp;('requirements',&nbsp;'NNS')],&nbsp;[('are',&nbsp;'VBP'),&nbsp;('what',&nbsp;'WP')],&nbsp;[('must',&nbsp;'MD'),&nbsp;('be',&nbsp;'VB'),('delivered',&nbsp;'VBN')]]<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;adjectiveDict:&nbsp;&nbsp;a&nbsp;dictionary&nbsp;with&nbsp;format&nbsp;&lt;block&nbsp;number&gt;:&lt;number&nbsp;of&nbsp;adjectives&gt;,&nbsp;also&nbsp;'total':&lt;total&nbsp;number&nbsp;of&nbsp;adjectives&gt;</tt></dd></dl>
+
+<dl><dt><a name="BlockProcessor-countAdverbs"><strong>countAdverbs</strong></a>(self, aPosList)</dt><dd><tt>Takes&nbsp;a&nbsp;list&nbsp;of&nbsp;strings&nbsp;and&nbsp;returns&nbsp;the&nbsp;count&nbsp;of&nbsp;total&nbsp;adverbs&nbsp;in&nbsp;list.<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;aPosList:&nbsp;a&nbsp;list&nbsp;of&nbsp;pos&nbsp;tagged&nbsp;lists<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ex.&nbsp;[[('Business',&nbsp;'NN'),&nbsp;('requirements',&nbsp;'NNS')],&nbsp;[('are',&nbsp;'VBP'),&nbsp;('what',&nbsp;'WP')],&nbsp;[('must',&nbsp;'MD'),&nbsp;('be',&nbsp;'VB'),('delivered',&nbsp;'VBN')]]<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;adverbDict:&nbsp;&nbsp;a&nbsp;dictionary&nbsp;with&nbsp;format&nbsp;&lt;block&nbsp;number&gt;:&lt;number&nbsp;of&nbsp;adverbs&gt;,&nbsp;also&nbsp;'total':&lt;total&nbsp;number&nbsp;of&nbsp;adverbs&gt;</tt></dd></dl>
+
+<dl><dt><a name="BlockProcessor-countNouns"><strong>countNouns</strong></a>(self, aPosList)</dt><dd><tt>Takes&nbsp;a&nbsp;list&nbsp;of&nbsp;strings&nbsp;and&nbsp;returns&nbsp;the&nbsp;count&nbsp;of&nbsp;total&nbsp;nouns&nbsp;in&nbsp;list.<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;aPosList:&nbsp;a&nbsp;list&nbsp;of&nbsp;pos&nbsp;tagged&nbsp;lists<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ex.&nbsp;[[('Business',&nbsp;'NN'),&nbsp;('requirements',&nbsp;'NNS')],&nbsp;[('are',&nbsp;'VBP'),&nbsp;('what',&nbsp;'WP')],&nbsp;[('must',&nbsp;'MD'),&nbsp;('be',&nbsp;'VB'),('delivered',&nbsp;'VBN')]]<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;nounDict:&nbsp;&nbsp;a&nbsp;dictionary&nbsp;with&nbsp;format&nbsp;&lt;block&nbsp;number&gt;:&lt;number&nbsp;of&nbsp;nouns&gt;,&nbsp;also&nbsp;'total':&lt;total&nbsp;number&nbsp;of&nbsp;nouns&gt;</tt></dd></dl>
+
+<dl><dt><a name="BlockProcessor-countOther"><strong>countOther</strong></a>(self, aPosList)</dt><dd><tt>Takes&nbsp;a&nbsp;list&nbsp;of&nbsp;strings&nbsp;and&nbsp;returns&nbsp;the&nbsp;count&nbsp;of&nbsp;total&nbsp;other&nbsp;parts&nbsp;of&nbsp;speech&nbsp;in&nbsp;list.<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;aPosList:&nbsp;a&nbsp;list&nbsp;of&nbsp;pos&nbsp;tagged&nbsp;lists<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ex.&nbsp;[[('Business',&nbsp;'NN'),&nbsp;('requirements',&nbsp;'NNS')],&nbsp;[('are',&nbsp;'VBP'),&nbsp;('what',&nbsp;'WP')],&nbsp;[('must',&nbsp;'MD'),&nbsp;('be',&nbsp;'VB'),('delivered',&nbsp;'VBN')]]<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;otherDict:&nbsp;&nbsp;a&nbsp;dictionary&nbsp;with&nbsp;format&nbsp;&lt;block&nbsp;number&gt;:&lt;number&nbsp;of&nbsp;others&gt;,&nbsp;also&nbsp;'total':&lt;total&nbsp;number&nbsp;of&nbsp;others&gt;</tt></dd></dl>
+
+<dl><dt><a name="BlockProcessor-countPronouns"><strong>countPronouns</strong></a>(self, aPosList)</dt><dd><tt>Takes&nbsp;a&nbsp;list&nbsp;of&nbsp;strings&nbsp;and&nbsp;returns&nbsp;the&nbsp;count&nbsp;of&nbsp;total&nbsp;pronouns&nbsp;in&nbsp;list.<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;aPosList:&nbsp;a&nbsp;list&nbsp;of&nbsp;pos&nbsp;tagged&nbsp;lists<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ex.&nbsp;[[('Business',&nbsp;'NN'),&nbsp;('requirements',&nbsp;'NNS')],&nbsp;[('are',&nbsp;'VBP'),&nbsp;('what',&nbsp;'WP')],&nbsp;[('must',&nbsp;'MD'),&nbsp;('be',&nbsp;'VB'),('delivered',&nbsp;'VBN')]]<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;pronounDict:&nbsp;&nbsp;a&nbsp;dictionary&nbsp;with&nbsp;format&nbsp;&lt;block&nbsp;number&gt;:&lt;number&nbsp;of&nbsp;pronouns&gt;,&nbsp;also&nbsp;'total':&lt;total&nbsp;number&nbsp;of&nbsp;pronouns&gt;</tt></dd></dl>
+
+<dl><dt><a name="BlockProcessor-countVerbs"><strong>countVerbs</strong></a>(self, aPosList)</dt><dd><tt>Takes&nbsp;a&nbsp;list&nbsp;of&nbsp;strings&nbsp;and&nbsp;returns&nbsp;the&nbsp;count&nbsp;of&nbsp;total&nbsp;verbs&nbsp;in&nbsp;list.<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;aPosList:&nbsp;a&nbsp;list&nbsp;of&nbsp;pos&nbsp;tagged&nbsp;lists<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ex.&nbsp;[[('Business',&nbsp;'NN'),&nbsp;('requirements',&nbsp;'NNS')],&nbsp;[('are',&nbsp;'VBP'),&nbsp;('what',&nbsp;'WP')],&nbsp;[('must',&nbsp;'MD'),&nbsp;('be',&nbsp;'VB'),('delivered',&nbsp;'VBN')]]<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;verbDict:&nbsp;&nbsp;a&nbsp;dictionary&nbsp;with&nbsp;format&nbsp;&lt;block&nbsp;number&gt;:&lt;number&nbsp;of&nbsp;verbs&gt;,&nbsp;also&nbsp;'total':&lt;total&nbsp;number&nbsp;of&nbsp;verbs&gt;</tt></dd></dl>
+
+<dl><dt><a name="BlockProcessor-distinctWordCount"><strong>distinctWordCount</strong></a>(self, tokenized)</dt><dd><tt>Processes&nbsp;blocks&nbsp;of&nbsp;text&nbsp;to&nbsp;determine&nbsp;distinct&nbsp;words&nbsp;and&nbsp;the&nbsp;frequency&nbsp;with&nbsp;which&nbsp;they&nbsp;occur<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;tokenized:&nbsp;a&nbsp;list&nbsp;of&nbsp;lists&nbsp;with&nbsp;each&nbsp;list&nbsp;containing&nbsp;tokenized&nbsp;text&nbsp;for&nbsp;one&nbsp;block&nbsp;of&nbsp;input<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;wordMat:&nbsp;a&nbsp;2d&nbsp;array&nbsp;containing&nbsp;distinct&nbsp;words&nbsp;on&nbsp;the&nbsp;y-axis&nbsp;and&nbsp;count&nbsp;per&nbsp;block&nbsp;and&nbsp;in<br>
+&nbsp;&nbsp;&nbsp;&nbsp;total&nbsp;on&nbsp;the&nbsp;x-axis</tt></dd></dl>
+
+<dl><dt><a name="BlockProcessor-phraseChunker"><strong>phraseChunker</strong></a>(self, aList, pattern)</dt><dd><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Processes&nbsp;the&nbsp;2nd&nbsp;column&nbsp;of&nbsp;the&nbsp;2D&nbsp;array&nbsp;row&nbsp;by&nbsp;row&nbsp;-&nbsp;for&nbsp;each&nbsp;row<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;the&nbsp;block&nbsp;is&nbsp;tokenized,&nbsp;tagged,&nbsp;noun&nbsp;phrases&nbsp;are&nbsp;chunked&nbsp;out<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;the&nbsp;variable&nbsp;result&nbsp;is&nbsp;a&nbsp;text&nbsp;based&nbsp;representation&nbsp;of&nbsp;a&nbsp;tree&nbsp;w/&nbsp;'S'&nbsp;as&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;the&nbsp;variable&nbsp;result&nbsp;is&nbsp;a&nbsp;text&nbsp;based&nbsp;representation&nbsp;of&nbsp;a&nbsp;tree&nbsp;w/&nbsp;'S'&nbsp;as<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;the&nbsp;head<br>
 &nbsp;<br>
 Args:<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TODO<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;aList:&nbsp;a&nbsp;2DArray&nbsp;of&nbsp;blocks&nbsp;and&nbsp;assoicated&nbsp;values<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;pattern:&nbsp;the&nbsp;regex&nbsp;pattern&nbsp;to&nbsp;use&nbsp;for&nbsp;word&nbsp;phrase&nbsp;chunking<br>
 &nbsp;<br>
 Returns:<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TODO</tt></dd></dl>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A&nbsp;list&nbsp;of&nbsp;lists.&nbsp;&nbsp;Each&nbsp;list&nbsp;is&nbsp;block&nbsp;of&nbsp;text&nbsp;chunked&nbsp;based&nbsp;on&nbsp;the&nbsp;input&nbsp;pattern<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;and&nbsp;formatted&nbsp;into&nbsp;a&nbsp;sentence&nbsp;tree&nbsp;structure.</tt></dd></dl>
 
-<dl><dt><a name="BlockProcessor-countAdjectives"><strong>countAdjectives</strong></a>(aList)</dt><dd><tt>Takes&nbsp;a&nbsp;list&nbsp;of&nbsp;strings&nbsp;and&nbsp;returns&nbsp;the&nbsp;count&nbsp;of&nbsp;total&nbsp;adjectives&nbsp;in&nbsp;list.<br>
+<dl><dt><a name="BlockProcessor-posTagger"><strong>posTagger</strong></a>(self, aList)</dt><dd><tt>Processes&nbsp;the2DArray&nbsp;to&nbsp;determine&nbsp;and&nbsp;label&nbsp;the&nbsp;part&nbsp;of&nbsp;speech&nbsp;for&nbsp;each&nbsp;word<br>
 &nbsp;<br>
 Args:<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;aList:&nbsp;a&nbsp;list&nbsp;of&nbsp;strings&nbsp;for&nbsp;processing<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ex.&nbsp;&nbsp;"text"<br>
+&nbsp;&nbsp;&nbsp;&nbsp;aList:&nbsp;a&nbsp;2DArray&nbsp;of&nbsp;blocks&nbsp;and&nbsp;associated&nbsp;values<br>
 &nbsp;<br>
 Returns:<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Integer&nbsp;value&nbsp;of&nbsp;the&nbsp;count&nbsp;of&nbsp;total&nbsp;adjectives&nbsp;in&nbsp;list</tt></dd></dl>
+&nbsp;&nbsp;&nbsp;&nbsp;A&nbsp;list&nbsp;of&nbsp;lists.&nbsp;&nbsp;Each&nbsp;list&nbsp;is&nbsp;a&nbsp;block&nbsp;of&nbsp;text&nbsp;tokenized&nbsp;with&nbsp;parts&nbsp;of&nbsp;speech</tt></dd></dl>
 
-<dl><dt><a name="BlockProcessor-countNouns"><strong>countNouns</strong></a>(self, aList)</dt><dd><tt>Takes&nbsp;a&nbsp;list&nbsp;of&nbsp;strings&nbsp;and&nbsp;returns&nbsp;the&nbsp;count&nbsp;of&nbsp;total&nbsp;nouns&nbsp;in&nbsp;list.<br>
+<dl><dt><a name="BlockProcessor-removeCommas"><strong>removeCommas</strong></a>(self, aList)</dt></dl>
+
+<dl><dt><a name="BlockProcessor-tf_idf_Count"><strong>tf_idf_Count</strong></a>(self, tokenized)</dt><dd><tt>Processes&nbsp;blocks&nbsp;of&nbsp;text&nbsp;to&nbsp;determine&nbsp;term&nbsp;frequency&nbsp;and&nbsp;inverse&nbsp;document&nbsp;frequency&nbsp;data&nbsp;(tf-idf)<br>
 &nbsp;<br>
 Args:<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;aList:&nbsp;a&nbsp;list&nbsp;of&nbsp;strings&nbsp;for&nbsp;processing<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ex.&nbsp;&nbsp;"text"<br>
+&nbsp;&nbsp;&nbsp;&nbsp;tokenized:&nbsp;a&nbsp;list&nbsp;of&nbsp;lists&nbsp;with&nbsp;each&nbsp;list&nbsp;containing&nbsp;tokenized&nbsp;text&nbsp;for&nbsp;one&nbsp;block&nbsp;of&nbsp;input<br>
 &nbsp;<br>
 Returns:<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Integer&nbsp;value&nbsp;of&nbsp;the&nbsp;count&nbsp;of&nbsp;total&nbsp;nouns&nbsp;in&nbsp;list</tt></dd></dl>
+&nbsp;&nbsp;&nbsp;&nbsp;wordMat:&nbsp;a&nbsp;2d&nbsp;array&nbsp;containing&nbsp;distinct&nbsp;words&nbsp;on&nbsp;the&nbsp;y-axis&nbsp;and&nbsp;tf-idf&nbsp;data&nbsp;per&nbsp;block<br>
+&nbsp;&nbsp;&nbsp;&nbsp;on&nbsp;the&nbsp;x-axis</tt></dd></dl>
 
-<dl><dt><a name="BlockProcessor-countVerbs"><strong>countVerbs</strong></a>(aList)</dt><dd><tt>Takes&nbsp;a&nbsp;list&nbsp;of&nbsp;strings&nbsp;and&nbsp;returns&nbsp;the&nbsp;count&nbsp;of&nbsp;total&nbsp;verbs&nbsp;in&nbsp;list.<br>
+<dl><dt><a name="BlockProcessor-updateArray"><strong>updateArray</strong></a>(self, aList, blockNum, attrib, value)</dt><dd><tt>Updates&nbsp;value&nbsp;in&nbsp;2D&nbsp;array&nbsp;based&nbsp;on&nbsp;input&nbsp;parameters.<br>
 &nbsp;<br>
 Args:<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;aList:&nbsp;a&nbsp;list&nbsp;of&nbsp;strings&nbsp;for&nbsp;processing<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ex.&nbsp;&nbsp;"text"<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;aList:&nbsp;the&nbsp;2D&nbsp;array&nbsp;to&nbsp;be&nbsp;updated<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;blockNum:&nbsp;the&nbsp;block&nbsp;number&nbsp;to&nbsp;be&nbsp;updated.&nbsp;&nbsp;Valid&nbsp;values&nbsp;are:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'nounCount',&nbsp;'verbCount',&nbsp;'pronounCount',&nbsp;'adjCount',&nbsp;'adverbCount',&nbsp;'otherCount',&nbsp;'totalWordCount'<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;attrib:&nbsp;the&nbsp;attribute&nbsp;of&nbsp;the&nbsp;block&nbsp;to&nbsp;be&nbsp;updated<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;value:&nbsp;the&nbsp;number&nbsp;or&nbsp;count&nbsp;value<br>
 &nbsp;<br>
 Returns:<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Integer&nbsp;value&nbsp;of&nbsp;the&nbsp;count&nbsp;of&nbsp;total&nbsp;verbs&nbsp;in&nbsp;list</tt></dd></dl>
-
-<dl><dt><a name="BlockProcessor-getPOS"><strong>getPOS</strong></a>(self, aList)</dt></dl>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The&nbsp;updated&nbsp;2D&nbsp;array,&nbsp;aList</tt></dd></dl>
 
 <dl><dt><a name="BlockProcessor-wordCount"><strong>wordCount</strong></a>(self, aList)</dt><dd><tt>Takes&nbsp;a&nbsp;list&nbsp;of&nbsp;strings&nbsp;and&nbsp;returns&nbsp;the&nbsp;count&nbsp;of&nbsp;total&nbsp;words&nbsp;in&nbsp;list.<br>
 &nbsp;<br>
@@ -89,5 +161,12 @@ Args:<br>
 Returns:<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Integer&nbsp;value&nbsp;of&nbsp;the&nbsp;count&nbsp;of&nbsp;total&nbsp;words&nbsp;in&nbsp;list</tt></dd></dl>
 
-</td></tr></table></td></tr></table>
+</td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#55aa55">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Data</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#55aa55"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><strong>stopwords</strong> = &lt;WordListCorpusReader in '/home/aaron/nltk_data/corpora/stopwords'&gt;</td></tr></table>
 </body></html>
