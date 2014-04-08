@@ -145,20 +145,18 @@ if __name__ == "__main__":
     count = 1
     baseName = 'teamNLP'
     zipFileName = baseName + '.zip'
-    #print zipFileName + ' ' + str(os.path.exists(outputDirBase + zipFileName))
-    while (os.path.exists(outputDirBase + zipFileName)):
-        count += 1
-        zipFileName = baseName + str(count) + '.zip'
-        #print zipFileName + ' ' + str(os.path.exists(outputDirBase + zipFileName))
-    #print 'Creating: ' + zipFileName
-    zf = zipfile.ZipFile(outputDirBase + zipFileName, mode='a')
+    while (os.path.exists(outputDirBase + zipFileName)): # while the archive name exists
+        count += 1 # increment the counter...
+        zipFileName = baseName + str(count) + '.zip' # ...and add to the archive name
+    zf = zipfile.ZipFile(outputDirBase + zipFileName, mode='a') # open archive in append mode
     try:
-        for filename in [ 'the2DArray.csv', 'distinctWordCountArray.csv','tf_idfArray.csv' ]:
-            #print 'adding '+filename
-            zf.write(outputDirBase + filename, arcname=filename)
-            os.remove(outputDirBase + filename)
+        for filename in [ 'the2DArray.csv', 'distinctWordCountArray.csv','tf_idfArray.csv' ]: # for each csv file
+            zf.write(outputDirBase + filename, arcname=filename) # add the file to the archive
+            os.remove(outputDirBase + filename) # delete original file
+    except:
+        e = sys.exc_info()[0]
+        print 'Error: ' + str(e)
     finally:
-        #print 'closing'
-        zf.close()
+        zf.close() # close the archive
         
 
