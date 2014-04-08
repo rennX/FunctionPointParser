@@ -218,6 +218,7 @@ Returns:
     def removeCommas(self,aList):
         for block in aList:
             block[1] = block[1].replace(',',"")
+            block[1] = block[1].replace('.',"")
             block[2] = str(block[2]).replace(',',"|")
         return aList
 

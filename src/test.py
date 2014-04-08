@@ -47,7 +47,7 @@ if __name__ == "__main__":
         \t13) updateArray()
         \t14) distinctWordCount()
         \t15) tf_idf_Count()
-        """)
+        \n\tEnter your choice: """)
 
     #print choice
 

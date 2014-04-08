@@ -9,6 +9,7 @@ from BlockProcessor import *
 from Switch import *
 import sys, os
 import nltk
+import zipfile
 
 
 if __name__ == "__main__":
@@ -135,9 +136,29 @@ if __name__ == "__main__":
     ##############################################################################
 
     # now we have our 3 data structures, lets convert to csv
-    numpy.savetxt("../output/the2DArray.csv", the2DArray, delimiter=",", fmt="%s")
-    numpy.savetxt("../output/distinctWordCountArray.csv", distinctWordCountArray, delimiter=",", fmt="%s")
-    numpy.savetxt("../output/tf_idfArray.csv", tf_idfArray, delimiter=",", fmt="%s")
+    outputDirBase = '../output/' 
+    numpy.savetxt(outputDirBase + 'the2DArray.csv', the2DArray, delimiter=",", fmt="%s")
+    numpy.savetxt(outputDirBase + 'distinctWordCountArray.csv', distinctWordCountArray, delimiter=",", fmt="%s")
+    numpy.savetxt(outputDirBase + 'tf_idfArray.csv', tf_idfArray, delimiter=",", fmt="%s")
 
-
+    #zip up files for output
+    count = 1
+    baseName = 'teamNLP'
+    zipFileName = baseName + '.zip'
+    #print zipFileName + ' ' + str(os.path.exists(outputDirBase + zipFileName))
+    while (os.path.exists(outputDirBase + zipFileName)):
+        count += 1
+        zipFileName = baseName + str(count) + '.zip'
+        #print zipFileName + ' ' + str(os.path.exists(outputDirBase + zipFileName))
+    #print 'Creating: ' + zipFileName
+    zf = zipfile.ZipFile(outputDirBase + zipFileName, mode='a')
+    try:
+        for filename in [ 'the2DArray.csv', 'distinctWordCountArray.csv','tf_idfArray.csv' ]:
+            #print 'adding '+filename
+            zf.write(outputDirBase + filename, arcname=filename)
+            os.remove(outputDirBase + filename)
+    finally:
+        #print 'closing'
+        zf.close()
+        
 
