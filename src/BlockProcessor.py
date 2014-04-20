@@ -64,7 +64,7 @@ class BlockProcessor:
         verbDict = { 'total': int(0) }
         for x in aPosList:
             blockCount += 1
-            if blockCount != 0 and blockCount != (len(aPosList)-1): # skip over heading
+            if blockCount != 0 and blockCount != (len(aPosList)-1): # skip over heading and total
                 verbDict[blockCount] = 0
                 for y in x:
                     #print "Scanning..." + str(y)
@@ -92,7 +92,7 @@ class BlockProcessor:
         adjectiveDict = { 'total': int(0) }
         for x in aPosList:
             blockCount += 1
-            if blockCount != 0 and blockCount != (len(aPosList)-1): # skip over heading
+            if blockCount != 0 and blockCount != (len(aPosList)-1): # skip over heading and total
                 adjectiveDict[blockCount] = 0
                 for y in x:
                     #print "Scanning..." + str(y)
@@ -120,7 +120,7 @@ class BlockProcessor:
         pronounDict = { 'total': int(0) }
         for x in aPosList:
             blockCount += 1
-            if blockCount != 0 and blockCount != (len(aPosList)-1): # skip over heading
+            if blockCount != 0 and blockCount != (len(aPosList)-1): # skip over heading and total
                 pronounDict[blockCount] = 0
                 for y in x:
                     #print "Scanning..." + str(y)
@@ -177,7 +177,7 @@ class BlockProcessor:
         otherDict = { 'total': int(0) }
         for x in aPosList:
             blockCount += 1
-            if blockCount != 0 and blockCount != (len(aPosList)-1): # skip over heading
+            if blockCount != 0 and blockCount != (len(aPosList)-1): # skip over heading and total
                 otherDict[blockCount] = 0
                 for y in x:
                     #print "Scanning..." + str(y)
@@ -260,7 +260,7 @@ Returns:
         wordCountDict = { 'total': int(0) }
         for x in aList:
             blockCount += 1
-            if blockCount != 0 and blockCount != (len(aList)-1): # skip over heading
+            if blockCount != 0 and blockCount != (len(aList)-1): # skip over heading and total
                 wordCountDict[blockCount] = 0
                 for y in x:
                     #print "Scanning..."+str(y)
@@ -337,7 +337,8 @@ Returns:
         numBlocks = -1 # start at -1, we will strip off 0th row
         for block in tokenized:
             numBlocks += 1
-            if numBlocks != 0: # skip over heading
+            #if numBlocks != 0: # skip over heading
+            if numBlocks != 0 and numBlocks != (len(tokenized)-1): # skip over heading and total
                 for word in block:
                     if word is not '.':
                         wordDict[word.lower()] = 0
@@ -390,7 +391,8 @@ Returns:
         numBlocks = -1 # start at -1, we will strip off 0th row
         for block in tokenized:
             numBlocks += 1
-            if numBlocks != 0: # skip over heading
+            #if numBlocks != 0: # skip over heading
+            if numBlocks != 0 and numBlocks != (len(tokenized)-1): # skip over heading and total
                 for word in block:
                     if word is not '.':
                         wordDict[word.lower()] = 0
