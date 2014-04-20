@@ -192,7 +192,7 @@ class fppMain(Frame):
             
 def main():
     root = Tk()
-    root.geometry("750x700+700+700")
+    root.geometry("750x700+40+80")
     app = fppMain(root)
     root.mainloop()
 
